@@ -1,6 +1,8 @@
 import './globals.css';
 import { Roboto } from 'next/font/google';
 
+import DrawerMenu from '@components/DrawerMenu/';
+
 const roboto = Roboto({
   weight: ['300', '400', '500', '700'],
   style: ['normal', 'italic'],
@@ -19,8 +21,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="pt-br">
-      <body className={roboto.className}>{children}</body>
+    <html className={roboto.className} lang="pt-br">
+      <body>
+        <DrawerMenu>{children}</DrawerMenu>
+      </body>
     </html>
   );
 }
