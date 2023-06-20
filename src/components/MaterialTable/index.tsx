@@ -70,7 +70,7 @@ export default function Table({ data }: Props) {
   const handleCreateNewRow = async (values: IClient) => {
     try {
       await clientRequests.createNew(values);
-      fetch('/api/revalidate');
+      fetch(process.env.NEXT_PUBLIC_VERCEL_URL || 'http://localhost:3000');
       dataTable.push(values);
       setDataTable([...dataTable]);
     } catch (err) {
@@ -83,7 +83,7 @@ export default function Table({ data }: Props) {
       //if using flat data and simple accessorKeys/ids, you can just do a simple assignment here.
       await clientRequests.updateById({ ...values, id: row.original.id });
       dataTable[row.index] = values;
-      fetch('/api/revalidate');
+      fetch(process.env.NEXT_PUBLIC_VERCEL_URL || 'http://localhost:3000');
       setDataTable([...dataTable]);
       exitEditingMode();
     };
@@ -98,7 +98,7 @@ export default function Table({ data }: Props) {
       }
       //send api delete request here, then refetch or update local table data for re-render
       await clientRequests.deleteById(Number(row.original.id));
-      fetch('/api/revalidate');
+      fetch(process.env.NEXT_PUBLIC_VERCEL_URL || 'http://localhost:3000');
 
       dataTable.splice(row.index, 1);
       setDataTable([...dataTable]);

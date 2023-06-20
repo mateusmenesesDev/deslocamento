@@ -35,7 +35,6 @@ export const NewDataModal = ({
   );
 
   const handleSubmit = () => {
-    //put your validation logic here
     onSubmit(values);
     onClose();
   };
