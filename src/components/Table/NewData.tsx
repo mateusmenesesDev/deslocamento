@@ -1,58 +1,76 @@
-'use client';
 import { useState } from 'react';
 
-import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
-import Modal from '@mui/material/Modal';
-import Typography from '@mui/material/Typography';
+import {
+  Button,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogTitle,
+  Stack,
+  TextField
+} from '@mui/material';
+import { MRT_ColumnDef } from 'material-react-table';
 
-const style = {
-  position: 'absolute' as const,
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
-  width: 400,
-  bgcolor: 'background.paper',
-  border: '2px solid #000',
-  boxShadow: 24,
-  p: 4
-};
+import { IClient } from '../../typings/clients';
 
-const closeModalStyle = {
-  position: 'absolute' as const,
-  top: '0',
-  right: '0'
-};
+interface CreateModalProps {
+  columns: MRT_ColumnDef<IClient>[];
+  onClose: () => void;
+  onSubmit: (values: IClient) => void;
+  open: boolean;
+}
 
-export default function NewData() {
-  const [open, setOpen] = useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
+//example of creating a mui dialog modal for creating new rows
+export const NewDataModal = ({
+  open,
+  columns,
+  onClose,
+  onSubmit
+}: CreateModalProps) => {
+  const [values, setValues] = useState<any>(() =>
+    columns.reduce((acc, column) => {
+      acc[column.accessorKey ?? ''] = '';
+      return acc;
+    }, {} as any)
+  );
+
+  const handleSubmit = () => {
+    //put your validation logic here
+    onSubmit(values);
+    onClose();
+  };
 
   return (
-    <div>
-      <Button onClick={handleOpen} variant="outlined" sx={{ mt: 4, mb: 2 }}>
-        Adicionar novo
-      </Button>
-      <Modal
-        keepMounted
-        open={open}
-        onClose={handleClose}
-        aria-labelledby="keep-mounted-modal-title"
-        aria-describedby="keep-mounted-modal-description"
-      >
-        <Box sx={style}>
-          <Button onClick={handleClose} sx={closeModalStyle}>
-            X
-          </Button>
-          <Typography id="keep-mounted-modal-title" variant="h6" component="h2">
-            Text in a modal
-          </Typography>
-          <Typography id="keep-mounted-modal-description" sx={{ mt: 2 }}>
-            Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
-          </Typography>
-        </Box>
-      </Modal>
-    </div>
+    <Dialog open={open}>
+      <DialogTitle textAlign="center">Criar Novo Registro</DialogTitle>
+      <DialogContent>
+        <form onSubmit={(e) => e.preventDefault()}>
+          <Stack
+            sx={{
+              width: '100%',
+              minWidth: { xs: '300px', sm: '360px', md: '400px' },
+              gap: '1.5rem'
+            }}
+          >
+            {columns.map((column) => (
+              <TextField
+                key={column.accessorKey}
+                label={column.header}
+                name={column.accessorKey}
+                onChange={(e) =>
+                  setValues({ ...values, [e.target.name]: e.target.value })
+                }
+              />
+            ))}
+          </Stack>
+        </form>
+      </DialogContent>
+      <DialogActions sx={{ p: '1.25rem' }}>
+        <Button onClick={onClose}>Cancelar</Button>
+        <Button color="secondary" onClick={handleSubmit} variant="contained">
+          Confirmar
+        </Button>
+      </DialogActions>
+    </Dialog>
   );
-}
+};

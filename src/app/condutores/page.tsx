@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Table from '@components/Table';
+import Table from '@components/MaterialTable/';
 
 import { clientRequests } from '../../services/client';
 import { IClient } from '../../typings/clients';
