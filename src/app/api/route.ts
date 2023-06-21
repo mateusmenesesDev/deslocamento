@@ -1,8 +1,10 @@
-import { revalidatePath, revalidateTag } from 'next/cache';
+import { revalidateTag } from 'next/cache';
 import { NextRequest, NextResponse } from 'next/server';
 
-export async function GET() {
-  console.log('entrei aqui');
-  revalidatePath('/clientes/');
-  return NextResponse.json({ revalidated: true, now: Date.now() });
+export async function GET(request: NextRequest) {
+  const tag = request.nextUrl.searchParams.get('tag');
+  if (tag) {
+    revalidateTag(tag);
+    return NextResponse.json({ revalidated: true, now: Date.now() });
+  }
 }
