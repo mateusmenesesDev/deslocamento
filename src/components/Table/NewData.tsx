@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -14,8 +13,6 @@ import {
 import { MRT_ColumnDef } from 'material-react-table';
 
 import { Client, newClientSchema } from '../../schemas/clientSchema';
-import { IClient } from '../../typings/clients';
-import { clientRequests } from '../../services/client';
 
 interface CreateModalProps {
   columns: MRT_ColumnDef<Client>[];

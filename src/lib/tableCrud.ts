@@ -12,7 +12,6 @@ export const createNewRow = async ({
   setDataTable
 }: NewRowProps) => {
   try {
-    console.log('cheguei aqui');
     await clientRequests.createNew(values);
     await revalidate.clients();
     dataTable.unshift(values);
@@ -44,7 +43,6 @@ export const handleSaveRowEdit = async ({
   setDataTable
 }: EditRowProps) => {
   if (MUI) {
-    //if using flat data and simple accessorKeys/ids, you can just do a simple assignment here.
     await clientRequests.updateById({ ...MUI.values, id: MUI.row.original.id });
     dataTable[MUI.row.index] = MUI.values;
     await revalidate.clients();

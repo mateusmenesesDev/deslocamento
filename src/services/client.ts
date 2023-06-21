@@ -1,5 +1,4 @@
 import { Client } from '../schemas/clientSchema';
-import { IClient } from '../typings/clients';
 
 const baseUrl = 'https://api-deslocamento.herokuapp.com';
 
