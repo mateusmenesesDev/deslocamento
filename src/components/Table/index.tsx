@@ -14,6 +14,7 @@ import {
 import { Button } from '@mui/material';
 import Box from '@mui/material/Box';
 import { MRT_ColumnDef, MaterialReactTable } from 'material-react-table';
+import { MRT_Localization_PT_BR } from 'material-react-table/locales/pt-BR';
 
 import { IClient } from '../../typings/clients';
 
@@ -67,6 +68,7 @@ export default function Table({ data }: Props) {
     <Box sx={{ width: '100%' }}>
       Total de clientes: {dataTable.length}
       <MaterialReactTable
+        localization={MRT_Localization_PT_BR}
         columns={columns}
         data={dataTable}
         enableColumnOrdering
