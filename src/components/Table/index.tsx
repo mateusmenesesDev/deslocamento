@@ -89,7 +89,7 @@ export default function Table({ data }: Props) {
           <Box sx={{ display: 'flex', gap: '1rem' }}>
             <EditButton handleClick={() => table.setEditingRow(row)} />
             <DeleteButton
-              handleClick={async () => {
+              handleDelete={async () => {
                 setIsLoading(true);
                 await handleDeleteRow({ row, dataTable, setDataTable });
                 setIsLoading(false);

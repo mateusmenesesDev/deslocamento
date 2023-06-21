@@ -7,10 +7,12 @@ export const clientRequests = {
     const request = fetch(`${baseUrl}/api/v1/Cliente`);
     return (await request).json();
   },
+
   findById: async (id: number) => {
     const request = fetch(`${baseUrl}/api/v1/Cliente/${id}`);
     return (await request).json();
   },
+
   updateById: async (payload: IClient) => {
     delete payload.numeroDocumento;
     delete payload.tipoDocumento;
@@ -20,6 +22,7 @@ export const clientRequests = {
       headers: new Headers({ 'content-type': 'application/json' })
     });
   },
+
   deleteById: async (id: number) => {
     console.log('🚀 ~ file: client.ts:24 ~ deleteById: ~ id:', id);
     try {
@@ -38,6 +41,7 @@ export const clientRequests = {
     }
     // console.log('🚀 ~ file: client.ts:26 ~ deleteById: ~ teste:', teste);
   },
+
   createNew: async (payload: IClient) => {
     console.log('🚀 ~ file: client.ts:38 ~ createNew: ~ payload:', payload);
     console.log(

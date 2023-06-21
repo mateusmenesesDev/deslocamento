@@ -27,14 +27,6 @@ export const handleDeleteRow = async ({
   dataTable,
   setDataTable
 }: DeleteRowProps) => {
-  if (
-    !confirm(
-      `Tem certeza que deseja deletar o cliente: ${row.getValue('nome')}`
-    )
-  ) {
-    return;
-  }
-  //send api delete request here, then refetch or update local table data for re-render
   try {
     await clientRequests.deleteById(Number(row.original.id));
     await revalidate.clients();
