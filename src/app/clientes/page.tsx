@@ -6,5 +6,5 @@ import { IClient } from '../../typings/clients';
 export default async function page() {
   const clients: IClient[] = await clientRequests.findAll();
   if (!clients) throw new Error('Nenhum cliente encontrado');
-  return <p>teste {clients.length}</p>;
+  return clients.map((cliente, i) => <p key={i}>{cliente.nome}</p>);
 }
