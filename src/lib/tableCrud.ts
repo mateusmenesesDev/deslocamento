@@ -15,7 +15,7 @@ export const createNewRow = async ({
     console.log('cheguei aqui');
     await clientRequests.createNew(values);
     await revalidate.clients();
-    dataTable.push(values);
+    dataTable.unshift(values);
     setDataTable([...dataTable]);
   } catch (err) {
     console.log(err);
