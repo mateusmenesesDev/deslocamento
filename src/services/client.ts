@@ -4,7 +4,7 @@ const baseUrl = 'https://api-deslocamento.herokuapp.com';
 
 export const clientRequests = {
   findAll: async () => {
-    const request = fetch(`${baseUrl}/api/v1/Cliente`, { cache: 'no-store' });
+    const request = fetch(`${baseUrl}/api/v1/Cliente`);
     return (await request).json();
   },
   findById: async (id: number) => {
