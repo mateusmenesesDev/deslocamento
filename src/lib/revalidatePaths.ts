@@ -3,7 +3,6 @@ const baseRevalidateUrl = `${baseUrl}/api/revalidate?path=`;
 
 export const revalidate = {
   clients: async () => {
-    console.log('🚀 ~ file: revalidatePaths.ts:2 ~ baseUrl:', baseUrl);
     await fetch('/api/revalidate?path=/clientes');
   },
   drivers: async () => await fetch(`${baseRevalidateUrl}/condutores`),

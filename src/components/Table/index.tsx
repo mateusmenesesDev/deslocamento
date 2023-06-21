@@ -61,9 +61,11 @@ export default function Table({ data }: Props) {
     ],
     []
   );
-  const [dataTable, setDataTable] = useState(data);
+  const ordededData = data.reverse();
+  const [dataTable, setDataTable] = useState(ordededData);
   return (
     <Box sx={{ width: '100%' }}>
+      Total de clientes: {dataTable.length}
       <MaterialReactTable
         columns={columns}
         data={dataTable}

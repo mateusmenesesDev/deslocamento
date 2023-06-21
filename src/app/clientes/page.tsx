@@ -10,7 +10,6 @@ export default async function page() {
   if (!clients) throw new Error('Nenhum cliente encontrado');
   return (
     <>
-      Total de clientes: {clients.length}
       <Table data={clients} />;
     </>
   );

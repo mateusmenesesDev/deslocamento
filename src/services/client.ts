@@ -4,7 +4,7 @@ const baseUrl = 'https://api-deslocamento.herokuapp.com';
 
 export const clientRequests = {
   findAll: async () => {
-    const request = fetch(`${baseUrl}/api/v1/Cliente`);
+    const request = fetch(`${baseUrl}/api/v1/Cliente`, { cache: 'no-store' });
     return (await request).json();
   },
   findById: async (id: number) => {
@@ -28,9 +28,13 @@ export const clientRequests = {
         headers: new Headers({ 'content-type': 'application/json' }),
         body: JSON.stringify({ id })
       });
+      if (request.status === 400) {
+        console.log('entrei aqui');
+        throw new Error('Algo deu errado no servidor!');
+      }
       return request;
-    } catch (err) {
-      console.log(err);
+    } catch (err: any) {
+      throw new Error(err);
     }
     // console.log('🚀 ~ file: client.ts:26 ~ deleteById: ~ teste:', teste);
   },
