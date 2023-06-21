@@ -2,23 +2,23 @@ import { Dispatch, SetStateAction } from 'react';
 
 import { MRT_Row } from 'material-react-table';
 
-import { IClient } from './clients';
+import { Client } from '../schemas/clientSchema';
 
 interface DataType {
-  dataTable: IClient[];
-  setDataTable: Dispatch<SetStateAction<IClient[]>>;
+  dataTable: Client[];
+  setDataTable: Dispatch<SetStateAction<Client[]>>;
 }
 
 export interface NewRowProps extends DataType {
-  values: IClient;
+  values: Client;
 }
 
 export interface DeleteRowProps extends DataType {
-  row: MRT_Row<IClient>;
+  row: MRT_Row<Client>;
 }
 
 export interface EditRowProps {
   MUI: any;
-  dataTable: IClient[];
-  setDataTable: Dispatch<SetStateAction<IClient[]>>;
+  dataTable: Client[];
+  setDataTable: Dispatch<SetStateAction<Client[]>>;
 }

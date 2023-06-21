@@ -17,15 +17,16 @@ import { MRT_ColumnDef, MaterialReactTable } from 'material-react-table';
 import { MRT_Localization_PT_BR } from 'material-react-table/locales/pt-BR';
 
 import { IClient } from '../../typings/clients';
+import { Client } from '../../schemas/clientSchema';
 
 type Props = {
-  data: IClient[];
+  data: Client[];
 };
 
 export default function Table({ data }: Props) {
   const [createModalOpen, setCreateModalOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const columns = useMemo<MRT_ColumnDef<IClient>[]>(
+  const columns = useMemo<MRT_ColumnDef<Client>[]>(
     () => [
       {
         accessorKey: 'nome',

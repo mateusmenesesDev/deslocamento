@@ -30,14 +30,10 @@ export const handleDeleteRow = async ({
   try {
     await clientRequests.deleteById(Number(row.original.id));
     await revalidate.clients();
-    console.log('passei do primeiro catch');
-
     dataTable.splice(row.index, 1);
     setDataTable([...dataTable]);
     console.log(dataTable.length);
   } catch (err) {
-    console.log('entrei no ultimo catch');
-
     console.log(err);
   }
 };

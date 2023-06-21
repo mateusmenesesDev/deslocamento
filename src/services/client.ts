@@ -1,3 +1,4 @@
+import { Client } from '../schemas/clientSchema';
 import { IClient } from '../typings/clients';
 
 const baseUrl = 'https://api-deslocamento.herokuapp.com';
@@ -13,7 +14,7 @@ export const clientRequests = {
     return (await request).json();
   },
 
-  updateById: async (payload: IClient) => {
+  updateById: async (payload: Client) => {
     delete payload.numeroDocumento;
     delete payload.tipoDocumento;
     await fetch(`${baseUrl}/api/v1/Cliente/${payload.id}`, {
@@ -39,22 +40,15 @@ export const clientRequests = {
     } catch (err: any) {
       throw new Error(err);
     }
-    // console.log('🚀 ~ file: client.ts:26 ~ deleteById: ~ teste:', teste);
   },
 
-  createNew: async (payload: IClient) => {
-    console.log('🚀 ~ file: client.ts:38 ~ createNew: ~ payload:', payload);
-    console.log(
-      '🚀 ~ file: client.ts:38 ~ createNew: ~ payload:',
-      JSON.stringify(payload)
-    );
+  createNew: async (payload: Client) => {
     try {
       const request = await fetch(`${baseUrl}/api/v1/Cliente`, {
         method: 'POST',
         headers: new Headers({ 'content-type': 'application/json' }),
         body: JSON.stringify(payload)
       });
-      console.log('🚀 ~ file: client.ts:42 ~ createNew: ~ request:', request);
       return request;
     } catch (err) {
       console.log(err);

@@ -1,5 +1,7 @@
 import { useState } from 'react';
+import { SubmitHandler, useForm } from 'react-hook-form';
 
+import { zodResolver } from '@hookform/resolvers/zod';
 import {
   Button,
   Dialog,
@@ -11,12 +13,14 @@ import {
 } from '@mui/material';
 import { MRT_ColumnDef } from 'material-react-table';
 
+import { Client, newClientSchema } from '../../schemas/clientSchema';
 import { IClient } from '../../typings/clients';
+import { clientRequests } from '../../services/client';
 
 interface CreateModalProps {
-  columns: MRT_ColumnDef<IClient>[];
+  columns: MRT_ColumnDef<Client>[];
   onClose: () => void;
-  onSubmit: (values: IClient) => void;
+  onSubmit: (values: Client) => void;
   open: boolean;
 }
 
@@ -27,23 +31,27 @@ export const NewDataModal = ({
   onClose,
   onSubmit
 }: CreateModalProps) => {
-  const [values, setValues] = useState<any>(() =>
-    columns.reduce((acc, column) => {
-      acc[column.accessorKey ?? ''] = '';
-      return acc;
-    }, {} as any)
-  );
+  const {
+    register,
+    formState: { errors },
+    reset,
+    handleSubmit
+  } = useForm<Client>({
+    resolver: zodResolver(newClientSchema)
+  });
 
-  const handleSubmit = () => {
-    onSubmit(values);
+  const onSubmitHandler: SubmitHandler<Client> = async (data) => {
+    console.log(data);
+    console.log('cheguei no submit');
+    onSubmit(data);
+    reset();
     onClose();
   };
-
   return (
     <Dialog open={open}>
       <DialogTitle textAlign="center">Criar Novo Registro</DialogTitle>
       <DialogContent>
-        <form onSubmit={(e) => e.preventDefault()}>
+        <form onSubmit={handleSubmit(onSubmitHandler)}>
           <Stack
             sx={{
               width: '100%',
@@ -51,25 +59,31 @@ export const NewDataModal = ({
               gap: '1.5rem'
             }}
           >
-            {columns.map((column) => (
-              <TextField
-                key={column.accessorKey}
-                label={column.header}
-                name={column.accessorKey}
-                onChange={(e) =>
-                  setValues({ ...values, [e.target.name]: e.target.value })
-                }
-              />
-            ))}
+            {columns.map(
+              (column) =>
+                column.accessorKey && (
+                  <TextField
+                    key={column.accessorKey}
+                    label={column.header}
+                    error={!!errors[column.accessorKey]}
+                    helperText={
+                      errors[column.accessorKey]
+                        ? errors[column.accessorKey]?.message
+                        : ''
+                    }
+                    {...register(column.accessorKey)}
+                  />
+                )
+            )}
           </Stack>
+          <DialogActions sx={{ p: '1.25rem', justifyContent: 'space-between' }}>
+            <Button onClick={onClose}>Cancelar</Button>
+            <Button type="submit" color="secondary" variant="contained">
+              Confirmar
+            </Button>
+          </DialogActions>
         </form>
       </DialogContent>
-      <DialogActions sx={{ p: '1.25rem' }}>
-        <Button onClick={onClose}>Cancelar</Button>
-        <Button color="secondary" onClick={handleSubmit} variant="contained">
-          Confirmar
-        </Button>
-      </DialogActions>
     </Dialog>
   );
 };
