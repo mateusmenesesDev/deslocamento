@@ -11,17 +11,20 @@ import {
   handleDeleteRow,
   handleSaveRowEdit
 } from '@lib/tableCrud';
-import { Button } from '@mui/material';
 import Box from '@mui/material/Box';
-import { MRT_ColumnDef, MaterialReactTable } from 'material-react-table';
+import Button from '@mui/material/Button';
+import Typography from '@mui/material/Typography';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { type MRT_ColumnDef, MaterialReactTable } from 'material-react-table';
 
+import useClient from '../../hooks/useClient';
 import { IClient } from '../../typings/clients';
 
 type Props = {
   data: IClient[];
 };
 
-export default function Table({ data }: Props) {
+export default function Table() {
   const [createModalOpen, setCreateModalOpen] = useState(false);
   const columns = useMemo<MRT_ColumnDef<IClient>[]>(
     () => [
@@ -61,9 +64,11 @@ export default function Table({ data }: Props) {
     ],
     []
   );
+  const { data } = useClient();
   const [dataTable, setDataTable] = useState(data);
   return (
     <Box sx={{ width: '100%' }}>
+      <Typography>Total de clientes: {data.length}</Typography>
       <MaterialReactTable
         columns={columns}
         data={dataTable}
@@ -74,7 +79,7 @@ export default function Table({ data }: Props) {
         }
         displayColumnDefOptions={{
           'mrt-row-actions': {
-            header: 'Ações' //change header text
+            header: 'Ações'
           }
         }}
         renderRowActions={({ row, table }) => (

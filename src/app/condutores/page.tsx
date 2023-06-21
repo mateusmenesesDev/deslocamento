@@ -11,7 +11,7 @@ export default async function page() {
   return (
     <>
       Total de clientes: {clients.length}
-      <Table data={clients} />;
+      {/* <Table data={clients} />; */}
     </>
   );
 }

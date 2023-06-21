@@ -1,4 +1,5 @@
 // import './globals.css';
+
 import { Roboto } from 'next/font/google';
 
 import DrawerMenu from '@components/DrawerMenu/';
@@ -23,7 +24,8 @@ export default function RootLayout({
   return (
     <html className={roboto.className} lang="pt-br">
       <body>
-        <DrawerMenu>{children}</DrawerMenu>
+        {children}
+        {/* <DrawerMenu>{children}</DrawerMenu> */}
       </body>
     </html>
   );
