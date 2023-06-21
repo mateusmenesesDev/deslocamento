@@ -75,9 +75,11 @@ export default function Table({ data }: Props) {
         data={dataTable ?? []}
         enableColumnOrdering
         enableEditing
-        onEditingRowSave={(MUI) =>
-          handleSaveRowEdit({ MUI, dataTable, setDataTable })
-        }
+        onEditingRowSave={async (MUI) => {
+          setIsLoading(true);
+          await handleSaveRowEdit({ MUI, dataTable, setDataTable });
+          setIsLoading(false);
+        }}
         displayColumnDefOptions={{
           'mrt-row-actions': {
             header: 'Ações' //change header text
@@ -109,7 +111,11 @@ export default function Table({ data }: Props) {
         columns={columns}
         open={createModalOpen}
         onClose={() => setCreateModalOpen(false)}
-        onSubmit={(values) => createNewRow({ values, dataTable, setDataTable })}
+        onSubmit={async (values) => {
+          setIsLoading(true);
+          await createNewRow({ values, dataTable, setDataTable });
+          setIsLoading(false);
+        }}
       />
     </Box>
   );
