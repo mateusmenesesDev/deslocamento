@@ -24,6 +24,7 @@ type Props = {
 
 export default function Table({ data }: Props) {
   const [createModalOpen, setCreateModalOpen] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const columns = useMemo<MRT_ColumnDef<IClient>[]>(
     () => [
       {
@@ -69,8 +70,9 @@ export default function Table({ data }: Props) {
       Total de clientes: {dataTable.length}
       <MaterialReactTable
         localization={MRT_Localization_PT_BR}
+        state={{ showProgressBars: isLoading, isLoading }}
         columns={columns}
-        data={dataTable}
+        data={dataTable ?? []}
         enableColumnOrdering
         enableEditing
         onEditingRowSave={(MUI) =>
@@ -85,9 +87,11 @@ export default function Table({ data }: Props) {
           <Box sx={{ display: 'flex', gap: '1rem' }}>
             <EditButton handleClick={() => table.setEditingRow(row)} />
             <DeleteButton
-              handleClick={() =>
-                handleDeleteRow({ row, dataTable, setDataTable })
-              }
+              handleClick={async () => {
+                setIsLoading(true);
+                await handleDeleteRow({ row, dataTable, setDataTable });
+                setIsLoading(false);
+              }}
             />
           </Box>
         )}
