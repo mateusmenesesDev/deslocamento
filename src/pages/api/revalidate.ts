@@ -1,4 +1,4 @@
-export default async function handler(req, res) {
+export default async function handler(req: any, res: any) {
   // Check for secret to confirm this is a valid request
   try {
     // this should be the actual path not a rewritten path
