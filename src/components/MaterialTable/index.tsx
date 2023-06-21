@@ -4,6 +4,7 @@ import { useCallback, useMemo, useState } from 'react';
 
 import { NewDataModal } from '@components/Table/NewData';
 
+import { revalidate } from '@lib/revalidatePaths';
 import { Delete, Edit } from '@mui/icons-material';
 import { Button, IconButton, Tooltip } from '@mui/material';
 import Box from '@mui/material/Box';
@@ -70,11 +71,7 @@ export default function Table({ data }: Props) {
   const handleCreateNewRow = async (values: IClient) => {
     try {
       await clientRequests.createNew(values);
-      fetch(
-        `${
-          process.env.NEXT_PUBLIC_VERCEL_URL || 'http://localhost:3000'
-        }/api/revalidate`
-      );
+      await revalidate.clients();
       dataTable.push(values);
       setDataTable([...dataTable]);
     } catch (err) {
@@ -84,14 +81,9 @@ export default function Table({ data }: Props) {
 
   const handleSaveRowEdit: MaterialReactTableProps<IClient>['onEditingRowSave'] =
     async ({ exitEditingMode, row, values }) => {
-      //if using flat data and simple accessorKeys/ids, you can just do a simple assignment here.
       await clientRequests.updateById({ ...values, id: row.original.id });
       dataTable[row.index] = values;
-      fetch(
-        `${
-          process.env.NEXT_PUBLIC_VERCEL_URL || 'http://localhost:3000'
-        }/api/revalidate`
-      );
+      await revalidate.clients();
       setDataTable([...dataTable]);
       exitEditingMode();
     };
@@ -106,12 +98,7 @@ export default function Table({ data }: Props) {
       }
       //send api delete request here, then refetch or update local table data for re-render
       await clientRequests.deleteById(Number(row.original.id));
-      fetch(
-        `${
-          process.env.NEXT_PUBLIC_VERCEL_URL || 'http://localhost:3000'
-        }/api/revalidate`
-      );
-
+      await revalidate.clients();
       dataTable.splice(row.index, 1);
       setDataTable([...dataTable]);
     },

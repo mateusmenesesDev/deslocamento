@@ -4,6 +4,7 @@ import {
   EditRowProps,
   NewRowProps
 } from '../typings/tableCrud';
+import { revalidate } from './revalidatePaths';
 
 export const createNewRow = async ({
   values,
@@ -11,12 +12,9 @@ export const createNewRow = async ({
   setDataTable
 }: NewRowProps) => {
   try {
+    console.log('cheguei aqui');
     await clientRequests.createNew(values);
-    fetch(
-      `${
-        process.env.NEXT_PUBLIC_VERCEL_URL || 'http://localhost:3000'
-      }/api/revalidate`
-    );
+    await revalidate.clients();
     dataTable.push(values);
     setDataTable([...dataTable]);
   } catch (err) {
@@ -38,12 +36,7 @@ export const handleDeleteRow = async ({
   }
   //send api delete request here, then refetch or update local table data for re-render
   await clientRequests.deleteById(Number(row.original.id));
-  fetch(
-    `${
-      process.env.NEXT_PUBLIC_VERCEL_URL || 'http://localhost:3000'
-    }/api/revalidate`
-  );
-
+  await revalidate.clients();
   dataTable.splice(row.index, 1);
   setDataTable([...dataTable]);
 };
@@ -57,11 +50,7 @@ export const handleSaveRowEdit = async ({
     //if using flat data and simple accessorKeys/ids, you can just do a simple assignment here.
     await clientRequests.updateById({ ...MUI.values, id: MUI.row.original.id });
     dataTable[MUI.row.index] = MUI.values;
-    fetch(
-      `${
-        process.env.NEXT_PUBLIC_VERCEL_URL || 'http://localhost:3000'
-      }/api/revalidate`
-    );
+    await revalidate.clients();
     setDataTable([...dataTable]);
     MUI.exitEditingMode();
   }
