@@ -1,11 +1,5 @@
-export interface IClient {
+import { Client } from '../schemas/clientSchema';
+
+export interface IClient extends Client {
   id: number;
-  numeroDocumento: string;
-  tipoDocumento: string;
-  nome: string;
-  logradouro: string;
-  numero: string;
-  bairro: string;
-  cidade: string;
-  uf: string;
 }

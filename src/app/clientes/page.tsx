@@ -2,6 +2,7 @@ import React from 'react';
 
 import Table from '@components/Table';
 
+import { clientColumns } from '../../constants/columnsTable';
 import { clientRequests } from '../../services/client';
 import { IClient } from '../../typings/clients';
 
@@ -11,7 +12,7 @@ export default async function page() {
   if (!clients) throw new Error('Nenhum cliente encontrado');
   return (
     <>
-      <Table data={clients} />;
+      <Table data={clients} columns={clientColumns} />;
     </>
   );
 }

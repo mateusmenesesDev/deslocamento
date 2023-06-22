@@ -1,6 +1,6 @@
 'use client';
 
-import { useMemo, useState } from 'react';
+import { useState } from 'react';
 
 import DeleteButton from '@components/DeleteButton';
 import EditButton from '@components/EditButton';
@@ -21,54 +21,19 @@ import { Client } from '../../schemas/clientSchema';
 
 type Props = {
   data: Client[];
+  columns: MRT_ColumnDef<Client>[];
 };
 
-export default function Table({ data }: Props) {
+export default function Table({ data, columns }: Props) {
   const [createModalOpen, setCreateModalOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const columns = useMemo<MRT_ColumnDef<Client>[]>(
-    () => [
-      {
-        accessorKey: 'nome',
-        header: 'Nome'
-      },
-      {
-        accessorKey: 'tipoDocumento',
-        header: 'Tipo do documento'
-      },
-      {
-        accessorKey: 'numeroDocumento',
-        header: 'Documento'
-      },
-      {
-        accessorKey: 'bairro',
-        header: 'Bairro'
-      },
-      {
-        accessorKey: 'cidade',
-        header: 'Cidade'
-      },
-      {
-        accessorKey: 'logradouro',
-        header: 'Logradouro'
-      },
-
-      {
-        accessorKey: 'numero',
-        header: 'Numero'
-      },
-      {
-        accessorKey: 'uf',
-        header: 'UF'
-      }
-    ],
-    []
-  );
   const ordededData = data.reverse();
   const [dataTable, setDataTable] = useState(ordededData);
   return (
     <Box sx={{ width: '100%' }}>
-      <Typography>Total de clientes: {dataTable.length}</Typography>
+      <Typography variant="h5">
+        Total de clientes: {dataTable.length}
+      </Typography>
       <Box>
         <Button
           color="secondary"

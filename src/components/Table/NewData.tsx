@@ -38,8 +38,6 @@ export const NewDataModal = ({
   });
 
   const onSubmitHandler: SubmitHandler<Client> = async (data) => {
-    console.log(data);
-    console.log('cheguei no submit');
     onSubmit(data);
     reset();
     onClose();
@@ -49,7 +47,7 @@ export const NewDataModal = ({
       <DialogTitle textAlign="center">Criar Novo Registro</DialogTitle>
       <DialogContent>
         <form onSubmit={handleSubmit(onSubmitHandler)}>
-          <Stack
+          {/* <Stack
             sx={{
               width: '100%',
               minWidth: { xs: '300px', sm: '360px', md: '400px' },
@@ -72,7 +70,7 @@ export const NewDataModal = ({
                   />
                 )
             )}
-          </Stack>
+          </Stack> */}
           <DialogActions sx={{ p: '1.25rem', justifyContent: 'space-between' }}>
             <Button onClick={onClose}>Cancelar</Button>
             <Button type="submit" color="secondary" variant="contained">

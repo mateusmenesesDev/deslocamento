@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Table from '@components/MaterialTable/';
+import Table from '@components/Table';
 
 import { clientRequests } from '../../services/client';
 import { IClient } from '../../typings/clients';
@@ -11,7 +11,7 @@ export default async function page() {
   return (
     <>
       Total de clientes: {clients.length}
-      <Table data={clients} />;
+      {/* <Table data={clients} columns={} />; */}
     </>
   );
 }
