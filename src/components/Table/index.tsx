@@ -92,7 +92,7 @@ export default function Table({ data }: Props) {
         }}
         displayColumnDefOptions={{
           'mrt-row-actions': {
-            header: 'Ações' //change header text
+            header: 'Ações'
           }
         }}
         renderRowActions={({ row, table }) => (
@@ -108,42 +108,6 @@ export default function Table({ data }: Props) {
           </Box>
         )}
         enableTopToolbar
-        // renderToolbarInternalActions={({ table }) => (
-        //   <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
-        //     <Box>
-        //       <Button
-        //         color="secondary"
-        //         onClick={() => setCreateModalOpen(true)}
-        //         variant="contained"
-        //       >
-        //         CRIAR NOVO REGISTRO
-        //       </Button>
-        //     </Box>
-        //     <Box>
-        //       {/* add custom button to print table  */}
-        //       {/* along-side built-in buttons in whatever order you want them */}
-        //       <MRT_ToggleGlobalFilterButton table={table} />
-        //       <MRT_ToggleFiltersButton table={table} />
-        //       <MRT_ShowHideColumnsButton table={table} />
-        //       {/* <MRT_GlobalFilterTextField table={table} /> */}
-        //       <MRT_ToggleDensePaddingButton table={table} />
-        //       <MRT_FullScreenToggleButton table={table} />
-        //     </Box>
-        //   </Box>
-        // )}
-        // enableGlobalFilterModes
-        // initialState={{
-        //   showGlobalFilter: true
-        // }}
-        // renderTopToolbarCustomActions={() => (
-        //   <Button
-        //     color="secondary"
-        //     onClick={() => setCreateModalOpen(true)}
-        //     variant="contained"
-        //   >
-        //     CRIAR NOVO REGISTRO
-        //   </Button>
-        // )}
       />
       <NewDataModal
         columns={columns}
