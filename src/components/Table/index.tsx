@@ -11,8 +11,9 @@ import {
   handleDeleteRow,
   handleSaveRowEdit
 } from '@lib/tableCrud';
-import { Button } from '@mui/material';
 import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
+import Typography from '@mui/material/Typography';
 import { MRT_ColumnDef, MaterialReactTable } from 'material-react-table';
 import { MRT_Localization_PT_BR } from 'material-react-table/locales/pt-BR';
 
@@ -67,7 +68,16 @@ export default function Table({ data }: Props) {
   const [dataTable, setDataTable] = useState(ordededData);
   return (
     <Box sx={{ width: '100%' }}>
-      Total de clientes: {dataTable.length}
+      <Typography>Total de clientes: {dataTable.length}</Typography>
+      <Box>
+        <Button
+          color="secondary"
+          onClick={() => setCreateModalOpen(true)}
+          variant="contained"
+        >
+          CRIAR NOVO REGISTRO
+        </Button>
+      </Box>
       <MaterialReactTable
         localization={MRT_Localization_PT_BR}
         state={{ showProgressBars: isLoading, isLoading }}
@@ -97,15 +107,43 @@ export default function Table({ data }: Props) {
             />
           </Box>
         )}
-        renderTopToolbarCustomActions={() => (
-          <Button
-            color="secondary"
-            onClick={() => setCreateModalOpen(true)}
-            variant="contained"
-          >
-            CRIAR NOVO REGISTRO
-          </Button>
-        )}
+        enableTopToolbar
+        // renderToolbarInternalActions={({ table }) => (
+        //   <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
+        //     <Box>
+        //       <Button
+        //         color="secondary"
+        //         onClick={() => setCreateModalOpen(true)}
+        //         variant="contained"
+        //       >
+        //         CRIAR NOVO REGISTRO
+        //       </Button>
+        //     </Box>
+        //     <Box>
+        //       {/* add custom button to print table  */}
+        //       {/* along-side built-in buttons in whatever order you want them */}
+        //       <MRT_ToggleGlobalFilterButton table={table} />
+        //       <MRT_ToggleFiltersButton table={table} />
+        //       <MRT_ShowHideColumnsButton table={table} />
+        //       {/* <MRT_GlobalFilterTextField table={table} /> */}
+        //       <MRT_ToggleDensePaddingButton table={table} />
+        //       <MRT_FullScreenToggleButton table={table} />
+        //     </Box>
+        //   </Box>
+        // )}
+        // enableGlobalFilterModes
+        // initialState={{
+        //   showGlobalFilter: true
+        // }}
+        // renderTopToolbarCustomActions={() => (
+        //   <Button
+        //     color="secondary"
+        //     onClick={() => setCreateModalOpen(true)}
+        //     variant="contained"
+        //   >
+        //     CRIAR NOVO REGISTRO
+        //   </Button>
+        // )}
       />
       <NewDataModal
         columns={columns}

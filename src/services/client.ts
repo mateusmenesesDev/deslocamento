@@ -36,8 +36,8 @@ export const clientRequests = {
         throw new Error('Algo deu errado no servidor!');
       }
       return request;
-    } catch (err: any) {
-      throw new Error(err);
+    } catch (err) {
+      if (err instanceof Error) throw new Error(err.message);
     }
   },
 

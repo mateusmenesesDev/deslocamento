@@ -1,6 +1,6 @@
 import { Dispatch, SetStateAction } from 'react';
 
-import { MRT_Row } from 'material-react-table';
+import { type MRT_Row } from 'material-react-table';
 
 import { Client } from '../schemas/clientSchema';
 
