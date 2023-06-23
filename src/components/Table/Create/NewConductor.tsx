@@ -1,28 +1,21 @@
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 
 import { zodResolver } from '@hookform/resolvers/zod';
-import {
-  Button,
-  Dialog,
-  DialogActions,
-  DialogContent,
-  DialogTitle,
-  Stack,
-  TextField
-} from '@mui/material';
-import {
-  DateCalendar,
-  DatePicker,
-  LocalizationProvider
-} from '@mui/x-date-pickers';
+import Button from '@mui/material/Button';
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogTitle from '@mui/material/DialogTitle';
+import Stack from '@mui/material/Stack';
+import TextField from '@mui/material/TextField';
+import Typography from '@mui/material/Typography';
+import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { MRT_ColumnDef } from 'material-react-table';
-import { DemoContainer, DemoItem } from '@mui/x-date-pickers/internals/demo';
 
 import { newConductorSchema } from '../../../schemas/conductorSchema';
 import { TConductor } from '../../../schemas/conductorSchema';
-import dayjs from 'dayjs';
-import { useEffect } from 'react';
+import 'dayjs/locale/pt-br';
 
 interface CreateModalProps {
   columns: MRT_ColumnDef<TConductor>[];
@@ -31,7 +24,6 @@ interface CreateModalProps {
   open: boolean;
 }
 
-//example of creating a mui dialog modal for creating new rows
 export const NewConductor = ({
   open,
   columns,
@@ -50,7 +42,6 @@ export const NewConductor = ({
 
   const onSubmitHandler: SubmitHandler<TConductor> = async (data, e) => {
     e?.target.reset();
-    console.log(typeof data.vencimentoHabilitacao);
     onSubmit(data);
     reset();
     onClose();
@@ -58,7 +49,7 @@ export const NewConductor = ({
   return (
     <Dialog open={open}>
       <DialogTitle textAlign="center">Criar Novo Registro</DialogTitle>
-      <DialogContent>
+      <DialogContent sx={{ paddingY: '20px' }}>
         <form onSubmit={handleSubmit(onSubmitHandler)}>
           <Stack
             sx={{
@@ -82,20 +73,21 @@ export const NewConductor = ({
                   />
                 )
             )}
-            {/* <input
-              // defaultValue="12/12/1990"
-              type="date"
-              {...register('vencimentoHabilitacao')}
-            /> */}
             <Controller
               name="vencimentoHabilitacao"
               control={control}
               render={({ field }) => (
-                <LocalizationProvider dateAdapter={AdapterDayjs}>
+                <LocalizationProvider
+                  dateAdapter={AdapterDayjs}
+                  adapterLocale="pt-br"
+                >
                   <DatePicker {...field} />
                 </LocalizationProvider>
               )}
             ></Controller>
+            <Typography color="red" variant="caption">
+              {errors?.vencimentoHabilitacao?.message}
+            </Typography>
           </Stack>
           <DialogActions sx={{ p: '1.25rem', justifyContent: 'space-between' }}>
             <Button onClick={onClose}>Cancelar</Button>

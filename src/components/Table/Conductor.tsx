@@ -25,7 +25,6 @@ type Props = {
 };
 
 export default function Conductor({ data }: Props) {
-  console.log('🚀 ~ file: Conductor.tsx:28 ~ Conductor ~ data:', data);
   const columns = conductorColumns;
   const [createModalOpen, setCreateModalOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -75,7 +74,6 @@ export default function Conductor({ data }: Props) {
         onSubmit={async (values) => {
           setIsLoading(true);
           await createNewRow({ values, dataTable, setDataTable });
-          console.log('terminei de criar e irei desligar o loading');
           setIsLoading(false);
         }}
       />
