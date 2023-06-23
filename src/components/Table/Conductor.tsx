@@ -13,7 +13,7 @@ import {
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-import { MaterialReactTable, MRT_ColumnDef } from 'material-react-table';
+import { MaterialReactTable } from 'material-react-table';
 
 import { conductorColumns } from '../../constants/columnsTable';
 import { TConductor } from '../../schemas/conductorSchema';
@@ -50,7 +50,27 @@ export default function Conductor({ data }: Props) {
         columns={columns}
         data={dataTable ?? []}
         onEditingRowSave={async (MUI) => {
+          if (!MUI.values.vencimentoHabilitacao) {
+            return alert('Informe a data de vencimento da carteira');
+          }
+          const previousDate = new Date(
+            MUI.row.getValue('vencimentoHabilitacao')
+          );
+          const date = new Date(MUI.values.vencimentoHabilitacao);
+          const today = new Date();
+          if (date < today) {
+            return alert('A carteira está vencida!');
+          }
+          if (date < previousDate) {
+            return alert(
+              'A nova data de vencimento não pode ser menor do que a anterior!'
+            );
+          }
           setIsLoading(true);
+          console.log('antes', MUI.values.vencimentoHabilitacao);
+          MUI.values.vencimentoHabilitacao = date;
+          console.log('depois', MUI.values.vencimentoHabilitacao);
+
           await handleSaveRowEdit({ MUI, dataTable, setDataTable });
           setIsLoading(false);
         }}

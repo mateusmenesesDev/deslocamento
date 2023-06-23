@@ -65,6 +65,10 @@ export const conductorColumns: MRT_ColumnDef<TConductor>[] = [
           {new Date(cell.getValue<string>()).toLocaleDateString('pt-br')}
         </div>
       );
+    },
+    muiTableBodyCellEditTextFieldProps: {
+      type: 'date',
+      onChange: (e) => console.log(e)
     }
   }
 ];

@@ -48,8 +48,9 @@ export const handleSaveRowEdit = async ({
       ...MUI.values,
       id: MUI.row.original.id
     });
+    console.log(MUI.values.vencimentoHabilitacao.toLocaleDateString('pt-br'));
     dataTable[MUI.row.index] = MUI.values;
-    await revalidate.conductor();
+    revalidate.conductor();
     setDataTable([...dataTable]);
     MUI.exitEditingMode();
   }
