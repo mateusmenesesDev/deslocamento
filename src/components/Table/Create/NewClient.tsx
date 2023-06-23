@@ -12,7 +12,7 @@ import {
 } from '@mui/material';
 import { MRT_ColumnDef } from 'material-react-table';
 
-import { Client, newClientSchema } from '../../schemas/clientSchema';
+import { Client, newClientSchema } from '../../../schemas/clientSchema';
 
 interface CreateModalProps {
   columns: MRT_ColumnDef<Client>[];
@@ -22,7 +22,7 @@ interface CreateModalProps {
 }
 
 //example of creating a mui dialog modal for creating new rows
-export const NewDataModal = ({
+export const NewClient = ({
   open,
   columns,
   onClose,
@@ -47,7 +47,7 @@ export const NewDataModal = ({
       <DialogTitle textAlign="center">Criar Novo Registro</DialogTitle>
       <DialogContent>
         <form onSubmit={handleSubmit(onSubmitHandler)}>
-          {/* <Stack
+          <Stack
             sx={{
               width: '100%',
               minWidth: { xs: '300px', sm: '360px', md: '400px' },
@@ -70,7 +70,7 @@ export const NewDataModal = ({
                   />
                 )
             )}
-          </Stack> */}
+          </Stack>
           <DialogActions sx={{ p: '1.25rem', justifyContent: 'space-between' }}>
             <Button onClick={onClose}>Cancelar</Button>
             <Button type="submit" color="secondary" variant="contained">

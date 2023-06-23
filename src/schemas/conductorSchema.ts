@@ -6,12 +6,13 @@ export const newConductorSchema = z.object({
   numeroHabilitacao: z
     .string()
     .nonempty('Insira o número de habilitação do condutor'),
-  categoriaHabilitacao: z
+  catergoriaHabilitacao: z
     .string()
     .nonempty('Insira a categória da habilitação do condutor'),
-  vencimentoHabilitacao: z
-    .string()
-    .nonempty('Informe o vencimento da habilitação do condutor')
+  vencimentoHabilitacao: z.coerce.date({
+    required_error: 'Insira a data de vencimento da habilitação',
+    invalid_type_error: 'Insira a data de vencimento da habilitação'
+  })
 });
 
 export type TConductor = z.infer<typeof newConductorSchema>;

@@ -49,14 +49,27 @@ export const conductorColumns: MRT_ColumnDef<TConductor>[] = [
     header: 'Número de Habilitação'
   },
   {
-    accessorKey: 'categoriaHabilitacao',
+    accessorKey: 'catergoriaHabilitacao',
     header: 'Categoria da Habilitação'
   },
   {
     accessorKey: 'vencimentoHabilitacao',
-    header: 'Vencimento da Habilitação'
+    header: 'Vencimento da Habilitação',
+    Cell: ({ cell }) => {
+      const value = cell.getValue();
+      if (value instanceof Date) {
+        return <div>{value.toLocaleDateString('pt-br')}</div>;
+      }
+      return (
+        <div>
+          {new Date(cell.getValue<string>()).toLocaleDateString('pt-br')}
+        </div>
+      );
+    }
   }
 ];
+
+// return <div>{cell.getValue<Date>().toLocaleDateString('pt-br')}</div>;
 
 export const vehiclesColumns: MRT_ColumnDef<any>[] = [
   {
