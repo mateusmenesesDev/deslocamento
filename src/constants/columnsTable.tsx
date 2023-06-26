@@ -2,8 +2,7 @@ import { MRT_ColumnDef } from 'material-react-table';
 
 import { Client } from '../schemas/clientSchema';
 import { TConductor } from '../schemas/conductorSchema';
-import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { TVehicle } from '../schemas/vehicleSchema';
 
 export const clientColumns: MRT_ColumnDef<Client>[] = [
   {
@@ -81,22 +80,14 @@ export const conductorColumns: MRT_ColumnDef<TConductor>[] = [
         );
       }
     }
-    //   muiTableBodyCellEditTextFieldProps: (props) => {
-    //     return (
-    //       <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale="pt-br">
-    //         <DatePicker />
-    //       </LocalizationProvider>
-    //     );
-    //   }
   }
 ];
 
-// return <div>{cell.getValue<Date>().toLocaleDateString('pt-br')}</div>;
-
-export const vehiclesColumns: MRT_ColumnDef<any>[] = [
+export const vehiclesColumns: MRT_ColumnDef<TVehicle>[] = [
   {
     accessorKey: 'placa',
-    header: 'Placa'
+    header: 'Placa',
+    enableEditing: false
   },
   {
     accessorKey: 'marcaModelo',
