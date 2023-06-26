@@ -5,5 +5,6 @@ export const revalidate = {
     await fetch(`${baseRevalidateUrl}/clientes`);
   },
   conductor: async () => await fetch(`${baseRevalidateUrl}/condutores`),
-  vehicles: async () => await fetch(`${baseRevalidateUrl}/veiculos`)
+  vehicles: async () => await fetch(`${baseRevalidateUrl}/veiculos`),
+  travel: async () => await fetch(`${baseRevalidateUrl}/deslocamentos`)
 };

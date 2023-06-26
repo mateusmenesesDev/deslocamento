@@ -3,6 +3,7 @@ import { MRT_ColumnDef } from 'material-react-table';
 import { Client } from '../schemas/clientSchema';
 import { TConductor } from '../schemas/conductorSchema';
 import { TVehicle } from '../schemas/vehicleSchema';
+import { TTravel } from '../schemas/travelSchema';
 
 export const clientColumns: MRT_ColumnDef<Client>[] = [
   {
@@ -100,5 +101,48 @@ export const vehiclesColumns: MRT_ColumnDef<TVehicle>[] = [
   {
     accessorKey: 'kmAtual',
     header: 'Km Atual'
+  }
+];
+export const travelColumns: MRT_ColumnDef<TTravel>[] = [
+  {
+    accessorKey: 'condutor',
+    header: 'Condutor'
+  },
+  {
+    accessorKey: 'cliente',
+    header: 'Cliente'
+  },
+  {
+    accessorKey: 'veiculo',
+    header: 'Veículo'
+  },
+  {
+    accessorKey: 'kmInicial',
+    header: 'KM Inicial',
+    enableEditing: false
+  },
+  {
+    accessorKey: 'kmFinal',
+    header: 'KM Final'
+  },
+  {
+    accessorKey: 'inicioDeslocamento',
+    header: 'Início do Deslocamento'
+  },
+  {
+    accessorKey: 'fimDeslocamento',
+    header: 'Fim do Deslocamento'
+  },
+  {
+    accessorKey: 'checkList',
+    header: 'CheckList'
+  },
+  {
+    accessorKey: 'motivo',
+    header: 'Motivo'
+  },
+  {
+    accessorKey: 'observacao',
+    header: 'Observacao'
   }
 ];
