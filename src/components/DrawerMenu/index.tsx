@@ -1,6 +1,6 @@
 'use client';
 import Link from 'next/link';
-import * as React from 'react';
+import { useState } from 'react';
 
 import AirlineSeatReclineExtraIcon from '@mui/icons-material/AirlineSeatReclineExtra';
 import BarChartIcon from '@mui/icons-material/BarChart';
@@ -33,7 +33,7 @@ export default function DrawerMenu({
   children: React.ReactNode;
 }) {
   const theme = useTheme();
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
   const menuItens = [
     { text: 'Clientes', Icon: PersonOutlineIcon, url: 'clientes' },
     {
