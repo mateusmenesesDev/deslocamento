@@ -70,7 +70,7 @@ export default function DrawerMenu({
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" noWrap component="div">
-            Mini variant drawer
+            Deslocamento Naty
           </Typography>
         </Toolbar>
       </AppBar>
