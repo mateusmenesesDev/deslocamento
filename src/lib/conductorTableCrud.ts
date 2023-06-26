@@ -10,13 +10,9 @@ export const createNewRow = async ({
 }: NewRowProps<TConductor>) => {
   try {
     await conductorRequest.createNew(values);
-    console.log('Passei do request');
-    // await revalidate.conductor();
-    console.log('passei da revalidação');
+    await revalidate.conductor();
     dataTable.unshift(values);
-    console.log('Adicionei a nova data');
     setDataTable([...dataTable]);
-    console.log('Atualizei o state');
   } catch (err) {
     console.log(err);
   }
@@ -32,7 +28,6 @@ export const handleDeleteRow = async ({
     await revalidate.conductor();
     dataTable.splice(row.index, 1);
     setDataTable([...dataTable]);
-    console.log(dataTable.length);
   } catch (err) {
     console.log(err);
   }
@@ -48,7 +43,6 @@ export const handleSaveRowEdit = async ({
       ...MUI.values,
       id: MUI.row.original.id
     });
-    console.log(MUI.values.vencimentoHabilitacao.toLocaleDateString('pt-br'));
     dataTable[MUI.row.index] = MUI.values;
     revalidate.conductor();
     setDataTable([...dataTable]);

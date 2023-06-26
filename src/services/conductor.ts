@@ -17,9 +17,14 @@ export const conductorRequest = {
   },
 
   updateById: async (payload: TConductor) => {
+    const driverEdit = {
+      id: payload.id,
+      categoriaHabilitacao: payload.catergoriaHabilitacao,
+      vecimentoHabilitacao: payload.vencimentoHabilitacao
+    };
     await fetch(`${baseUrl}/api/v1/Condutor/${payload.id}`, {
       method: 'PUT',
-      body: JSON.stringify(payload),
+      body: JSON.stringify(driverEdit),
       headers: new Headers({ 'content-type': 'application/json' })
     });
   },
@@ -43,12 +48,17 @@ export const conductorRequest = {
   },
 
   createNew: async (payload: TConductor) => {
-    delete payload.id;
+    const newConductor = {
+      nome: payload.nome,
+      numeroHabilitacao: payload.numeroHabilitacao,
+      categoriaHabilitacao: payload.catergoriaHabilitacao,
+      vencimentoHabilitacao: payload.vencimentoHabilitacao
+    };
     try {
       const request = await fetch(`${baseUrl}/api/v1/Condutor`, {
         method: 'POST',
         headers: new Headers({ 'content-type': 'application/json' }),
-        body: JSON.stringify(payload)
+        body: JSON.stringify(newConductor)
       });
       return request;
     } catch (err) {

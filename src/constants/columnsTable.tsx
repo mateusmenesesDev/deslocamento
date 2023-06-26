@@ -2,6 +2,8 @@ import { MRT_ColumnDef } from 'material-react-table';
 
 import { Client } from '../schemas/clientSchema';
 import { TConductor } from '../schemas/conductorSchema';
+import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 
 export const clientColumns: MRT_ColumnDef<Client>[] = [
   {
@@ -42,11 +44,13 @@ export const clientColumns: MRT_ColumnDef<Client>[] = [
 export const conductorColumns: MRT_ColumnDef<TConductor>[] = [
   {
     accessorKey: 'nome',
-    header: 'Nome'
+    header: 'Nome',
+    enableEditing: false
   },
   {
     accessorKey: 'numeroHabilitacao',
-    header: 'Número de Habilitação'
+    header: 'Número de Habilitação',
+    enableEditing: false
   },
   {
     accessorKey: 'catergoriaHabilitacao',
@@ -68,8 +72,22 @@ export const conductorColumns: MRT_ColumnDef<TConductor>[] = [
     },
     muiTableBodyCellEditTextFieldProps: {
       type: 'date',
-      onChange: (e) => console.log(e)
+      onChange: (e) => {
+        console.log(e.target.value);
+        const date = new Date(e.target.value);
+        console.log(
+          '🚀 ~ file: Conductor.tsx:60 ~ onEditingRowSave={ ~ date:',
+          date
+        );
+      }
     }
+    //   muiTableBodyCellEditTextFieldProps: (props) => {
+    //     return (
+    //       <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale="pt-br">
+    //         <DatePicker />
+    //       </LocalizationProvider>
+    //     );
+    //   }
   }
 ];
 

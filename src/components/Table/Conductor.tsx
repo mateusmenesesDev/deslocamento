@@ -66,11 +66,8 @@ export default function Conductor({ data }: Props) {
               'A nova data de vencimento não pode ser menor do que a anterior!'
             );
           }
+          MUI.values.vencimentoHabilitacao = date.toISOString();
           setIsLoading(true);
-          console.log('antes', MUI.values.vencimentoHabilitacao);
-          MUI.values.vencimentoHabilitacao = date;
-          console.log('depois', MUI.values.vencimentoHabilitacao);
-
           await handleSaveRowEdit({ MUI, dataTable, setDataTable });
           setIsLoading(false);
         }}

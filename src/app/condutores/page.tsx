@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { Table } from '@components/Table';
 
 import { TConductor } from '../../schemas/conductorSchema';
