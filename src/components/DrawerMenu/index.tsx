@@ -79,7 +79,7 @@ export default function DrawerMenu({
         </DrawerHeader>
         <Divider />
         <List>
-          <Link href="/">
+          <Link href="/" style={{ textDecoration: 'none', color: 'inherit' }}>
             <ListItem disablePadding sx={{ display: 'block' }}>
               <ListItemButton
                 sx={{
@@ -99,7 +99,9 @@ export default function DrawerMenu({
                 </ListItemIcon>
                 <ListItemText
                   primary="Dashboard"
-                  sx={{ opacity: open ? 1 : 0 }}
+                  sx={{
+                    opacity: open ? 1 : 0
+                  }}
                 />
               </ListItemButton>
             </ListItem>
@@ -108,7 +110,11 @@ export default function DrawerMenu({
         <Divider />
         <List>
           {menuItens.map(({ text, Icon, url }) => (
-            <Link href={url} key={url}>
+            <Link
+              href={url}
+              key={url}
+              style={{ textDecoration: 'none', color: 'inherit' }}
+            >
               <ListItem key={text} disablePadding sx={{ display: 'block' }}>
                 <ListItemButton
                   sx={{
