@@ -2,6 +2,7 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 
 import { zodResolver } from '@hookform/resolvers/zod';
 import {
+  Autocomplete,
   Button,
   Dialog,
   DialogActions,
@@ -10,9 +11,11 @@ import {
   Stack,
   TextField
 } from '@mui/material';
+
 import { MRT_ColumnDef } from 'material-react-table';
 
 import { Client, newClientSchema } from '../../../schemas/clientSchema';
+import { provincyStates } from '../../../constants/brazilStates';
 
 interface CreateModalProps {
   columns: MRT_ColumnDef<Client>[];
@@ -55,21 +58,34 @@ export const NewClient = ({
             }}
           >
             {columns.map(
-              (column) =>
-                column.accessorKey && (
+              ({ accessorKey, header }) =>
+                accessorKey !== 'uf' &&
+                accessorKey && (
                   <TextField
-                    key={column.accessorKey}
-                    label={column.header}
-                    error={!!errors[column.accessorKey]}
+                    key={accessorKey}
+                    label={header}
+                    error={!!errors[accessorKey]}
                     helperText={
-                      errors[column.accessorKey]
-                        ? errors[column.accessorKey]?.message
-                        : ''
+                      errors[accessorKey] ? errors[accessorKey]?.message : ''
                     }
-                    {...register(column.accessorKey)}
+                    {...register(accessorKey)}
                   />
                 )
             )}
+            <Autocomplete
+              disablePortal
+              id="uf"
+              options={provincyStates}
+              renderInput={(params) => (
+                <TextField
+                  {...params}
+                  label="UF"
+                  {...register('uf')}
+                  error={!!errors.uf}
+                  helperText={errors.uf ? errors.uf?.message : ''}
+                />
+              )}
+            />
           </Stack>
           <DialogActions sx={{ p: '1.25rem', justifyContent: 'space-between' }}>
             <Button onClick={onClose}>Cancelar</Button>
