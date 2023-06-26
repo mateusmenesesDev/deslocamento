@@ -44,13 +44,6 @@ export default function DrawerMenu({
     { text: 'Veículos', Icon: DirectionsCarIcon, url: 'veiculos' },
     { text: 'Deslocamentos', Icon: ModeOfTravelIcon, url: 'deslocamentos' }
   ];
-  const handleDrawerOpen = () => {
-    setOpen(true);
-  };
-
-  const handleDrawerClose = () => {
-    setOpen(false);
-  };
 
   return (
     <Box sx={{ display: 'flex' }}>
@@ -60,7 +53,7 @@ export default function DrawerMenu({
           <IconButton
             color="inherit"
             aria-label="open drawer"
-            onClick={handleDrawerOpen}
+            onClick={() => setOpen(true)}
             edge="start"
             sx={{
               marginRight: 5,
@@ -76,7 +69,7 @@ export default function DrawerMenu({
       </AppBar>
       <Drawer variant="permanent" open={open}>
         <DrawerHeader>
-          <IconButton onClick={handleDrawerClose}>
+          <IconButton onClick={() => setOpen(false)}>
             {theme.direction === 'rtl' ? (
               <ChevronRightIcon />
             ) : (
