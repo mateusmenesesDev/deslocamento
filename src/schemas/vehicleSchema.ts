@@ -9,7 +9,6 @@ export const newVehicleSchema = z.object({
     .refine((value) => String(value).length === 4, {
       message: 'O ano deve ser escrito no seguinte formato: 2014'
     }),
-  // .nonnegative('Valores negativos não são aceitos'),
   kmAtual: z.coerce
     .number({ invalid_type_error: 'O valor deve ser um número!' })
     .refine((value) => value > 0, {

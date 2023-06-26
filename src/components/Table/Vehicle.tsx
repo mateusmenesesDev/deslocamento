@@ -19,6 +19,7 @@ import { vehiclesColumns } from '../../constants/columnsTable';
 import { TVehicle } from '../../schemas/vehicleSchema';
 import { tableConfig } from './config';
 import { NewVehicle } from './Create/NewVehicle';
+import { validateEditVehicle } from '@lib/validateEdit';
 
 type Props = {
   data: TVehicle[];
@@ -50,6 +51,7 @@ export default function Vehicle({ data }: Props) {
         columns={columns}
         data={dataTable ?? []}
         onEditingRowSave={async (MUI) => {
+          validateEditVehicle(MUI.values);
           setIsLoading(true);
           await handleSaveRowEdit({ MUI, dataTable, setDataTable });
           setIsLoading(false);
