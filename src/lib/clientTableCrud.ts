@@ -26,9 +26,8 @@ export const handleDeleteRow = async ({
   try {
     await clientRequests.deleteById(Number(row.original.id));
     await revalidate.clients();
-    dataTable.splice(row.index, 1);
-    setDataTable([...dataTable]);
-    console.log(dataTable.length);
+    const newDataTable = dataTable.filter(({ id }) => id !== row.original.id);
+    setDataTable(newDataTable);
   } catch (err) {
     console.log(err);
   }

@@ -26,8 +26,8 @@ export const handleDeleteRow = async ({
   try {
     await vehicleRequest.deleteById(Number(row.original.id));
     await revalidate.vehicles();
-    dataTable.splice(row.index, 1);
-    setDataTable([...dataTable]);
+    const newDataTable = dataTable.filter(({ id }) => id !== row.original.id);
+    setDataTable(newDataTable);
   } catch (err) {
     console.log(err);
   }

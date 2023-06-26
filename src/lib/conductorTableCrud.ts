@@ -26,8 +26,8 @@ export const handleDeleteRow = async ({
   try {
     await conductorRequest.deleteById(Number(row.original.id));
     await revalidate.conductor();
-    dataTable.splice(row.index, 1);
-    setDataTable([...dataTable]);
+    const newDataTable = dataTable.filter(({ id }) => id !== row.original.id);
+    setDataTable(newDataTable);
   } catch (err) {
     console.log(err);
   }
