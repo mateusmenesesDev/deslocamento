@@ -43,7 +43,7 @@ export const travelRequest = {
 
   createNew: async (payload: TTravel) => {
     try {
-      const request = await fetch(baseUrl, {
+      const request = await fetch(`${baseUrl}/IniciarDeslocamento`, {
         method: 'POST',
         headers: new Headers({ 'content-type': 'application/json' }),
         body: JSON.stringify(payload)

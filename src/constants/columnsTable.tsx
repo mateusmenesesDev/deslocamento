@@ -105,15 +105,15 @@ export const vehiclesColumns: MRT_ColumnDef<TVehicle>[] = [
 ];
 export const travelColumns: MRT_ColumnDef<TTravel>[] = [
   {
-    accessorKey: 'condutor',
+    accessorKey: 'idCondutor',
     header: 'Condutor'
   },
   {
-    accessorKey: 'cliente',
+    accessorKey: 'idCliente',
     header: 'Cliente'
   },
   {
-    accessorKey: 'veiculo',
+    accessorKey: 'idVeiculo',
     header: 'Veículo'
   },
   {
@@ -127,11 +127,34 @@ export const travelColumns: MRT_ColumnDef<TTravel>[] = [
   },
   {
     accessorKey: 'inicioDeslocamento',
-    header: 'Início do Deslocamento'
+    header: 'Início do Deslocamento',
+    Cell: ({ cell }) => {
+      const value = cell.getValue();
+      if (value instanceof Date) {
+        return <div>{value.toLocaleDateString('pt-br')}</div>;
+      }
+      return (
+        <div>
+          {new Date(cell.getValue<string>()).toLocaleDateString('pt-br')}
+        </div>
+      );
+    }
   },
   {
     accessorKey: 'fimDeslocamento',
-    header: 'Fim do Deslocamento'
+    header: 'Fim do Deslocamento',
+    Cell: ({ cell }) => {
+      const value = cell.getValue();
+      if (!value) return null;
+      if (value instanceof Date) {
+        return <div>{value.toLocaleDateString('pt-br')}</div>;
+      }
+      return (
+        <div>
+          {new Date(cell.getValue<string>()).toLocaleDateString('pt-br')}
+        </div>
+      );
+    }
   },
   {
     accessorKey: 'checkList',

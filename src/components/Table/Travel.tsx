@@ -41,7 +41,7 @@ export default function Travel({ data }: Props) {
           onClick={() => setCreateModalOpen(true)}
           variant="contained"
         >
-          ADICIONAR NOVO VEÍCULO
+          CRIAR NOVO DESLOCAMENTO
         </Button>
       </Box>
       <MaterialReactTable
@@ -72,6 +72,7 @@ export default function Travel({ data }: Props) {
         open={createModalOpen}
         onClose={() => setCreateModalOpen(false)}
         onSubmit={async (values) => {
+          console.log(values);
           setIsLoading(true);
           await createNewRow({ values, dataTable, setDataTable });
           setIsLoading(false);
