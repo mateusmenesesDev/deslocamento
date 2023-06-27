@@ -8,19 +8,36 @@ import { clientRequests } from '../services/client';
 import { conductorRequest } from '../services/conductor';
 import { travelRequest } from '../services/travel';
 import { vehicleRequest } from '../services/vehicle';
+import Weather from '@components/Weather';
+import { weatherRequests } from '../services/weather';
 
 export const revalidate = 5;
 export default async function Home() {
-  const clients: Client[] = await clientRequests.findAll();
-  const conductors: TConductor[] = await conductorRequest.findAll();
-  const vehicles: TVehicle[] = await vehicleRequest.findAll();
-  const travels: TTravel[] = await travelRequest.findAll();
+  const clientsResponse: Promise<Client[]> = clientRequests.findAll();
+  const conductorsResponse: Promise<TConductor[]> = conductorRequest.findAll();
+  const vehiclesResponse: Promise<TVehicle[]> = vehicleRequest.findAll();
+  const travelsResponse: Promise<TTravel[]> = travelRequest.findAll();
+  const weathersDataResponse = weatherRequests.getAll();
+  const [clients, conductors, vehicles, travels, weathers] = await Promise.all([
+    clientsResponse,
+    conductorsResponse,
+    vehiclesResponse,
+    travelsResponse,
+    weathersDataResponse
+  ]);
   return (
-    <Dashboard
-      clients={clients}
-      conductors={conductors}
-      vehicles={vehicles}
-      travels={travels}
-    />
+    <>
+      <div>
+        <Dashboard
+          clients={clients}
+          conductors={conductors}
+          vehicles={vehicles}
+          travels={travels}
+        />
+      </div>
+      <div>
+        <Weather weathersData={weathers} />
+      </div>
+    </>
   );
 }

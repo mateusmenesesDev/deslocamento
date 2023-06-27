@@ -1,7 +1,5 @@
 import { Roboto } from 'next/font/google';
 
-import './globals.css';
-// import './globals.css';
 import DrawerMenu from '@components/DrawerMenu/';
 
 const roboto = Roboto({
