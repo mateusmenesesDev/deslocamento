@@ -17,14 +17,9 @@ export const conductorRequest = {
   },
 
   updateById: async (payload: TConductor) => {
-    const driverEdit = {
-      id: payload.id,
-      categoriaHabilitacao: payload.catergoriaHabilitacao,
-      vecimentoHabilitacao: payload.vencimentoHabilitacao
-    };
     await fetch(`${baseUrl}/api/v1/Condutor/${payload.id}`, {
       method: 'PUT',
-      body: JSON.stringify(driverEdit),
+      body: JSON.stringify(payload),
       headers: new Headers({ 'content-type': 'application/json' })
     });
   },

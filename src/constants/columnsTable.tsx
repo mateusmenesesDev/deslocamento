@@ -6,6 +6,7 @@ import { TTravel } from '../schemas/travelSchema';
 import { TVehicle } from '../schemas/vehicleSchema';
 import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import 'dayjs/locale/pt-br';
 
 export const clientColumns: MRT_ColumnDef<Client>[] = [
   {
@@ -72,17 +73,31 @@ export const conductorColumns: MRT_ColumnDef<TConductor>[] = [
         </div>
       );
     },
-    muiTableBodyCellEditTextFieldProps: {
-      type: 'date',
-      onChange: (e) => {
-        console.log(e.target.value);
-        const date = new Date(e.target.value);
-        console.log(
-          '🚀 ~ file: Conductor.tsx:60 ~ onEditingRowSave={ ~ date:',
-          date
-        );
-      }
-    }
+    Edit: ({ column, table }) => (
+      <LocalizationProvider adapterLocale="pt-br" dateAdapter={AdapterDayjs}>
+        <DatePicker
+          label="Vencimento da Habilitação"
+          onChange={(newValue: any) => {
+            if (newValue.length < 0) alert('Informe a data de encerramento!');
+            const date = new Date(newValue);
+            const { editingRow } = table.getState();
+            const { setEditingRow } = table;
+            const saveRow = (newValue: Date) => {
+              if (editingRow) {
+                setEditingRow({
+                  ...editingRow,
+                  _valuesCache: {
+                    ...editingRow._valuesCache,
+                    [column.id]: newValue
+                  }
+                });
+              }
+            };
+            saveRow(date);
+          }}
+        />
+      </LocalizationProvider>
+    )
   }
 ];
 

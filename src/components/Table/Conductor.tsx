@@ -56,17 +56,15 @@ export default function Conductor({ data }: Props) {
           const previousDate = new Date(
             MUI.row.getValue('vencimentoHabilitacao')
           );
-          const date = new Date(MUI.values.vencimentoHabilitacao);
           const today = new Date();
-          if (date < today) {
+          if (MUI.values.vencimentoHabilitacao < today) {
             return alert('A carteira está vencida!');
           }
-          if (date < previousDate) {
+          if (MUI.values.vencimentoHabilitacao < previousDate) {
             return alert(
               'A nova data de vencimento não pode ser menor do que a anterior!'
             );
           }
-          MUI.values.vencimentoHabilitacao = date.toISOString();
           setIsLoading(true);
           await handleSaveRowEdit({ MUI, dataTable, setDataTable });
           setIsLoading(false);
