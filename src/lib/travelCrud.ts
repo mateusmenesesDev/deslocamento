@@ -1,7 +1,11 @@
+import { Client } from '../schemas/clientSchema';
 import { TConductor } from '../schemas/conductorSchema';
 import { TTravel } from '../schemas/travelSchema';
+import { TVehicle } from '../schemas/vehicleSchema';
+import { clientRequests } from '../services/client';
 import { conductorRequest } from '../services/conductor';
 import { travelRequest } from '../services/travel';
+import { vehicleRequest } from '../services/vehicle';
 import { DeleteRowProps, EditRowProps, NewRowProps } from '../typings/Crud';
 import { revalidate } from './revalidatePaths';
 
@@ -14,11 +18,21 @@ export const createNewRow = async ({
     const conductorResponse: Promise<TConductor> = conductorRequest.findById(
       values.idCondutor as number
     );
-    const [conductor] = await Promise.all([
+    const clientResponse: Promise<Client> = clientRequests.findById(
+      values.idCliente as number
+    );
+    const vehicleResponse: Promise<TVehicle> = vehicleRequest.findById(
+      values.idVeiculo as number
+    );
+    const [conductor, client, vehicle] = await Promise.all([
       conductorResponse,
+      clientResponse,
+      vehicleResponse,
       travelRequest.createNew(values)
     ]);
     values.idCondutor = conductor.nome;
+    values.idCliente = client.nome;
+    values.idVeiculo = vehicle.placa;
     await revalidate.travel();
     dataTable.unshift(values);
     setDataTable([...dataTable]);
