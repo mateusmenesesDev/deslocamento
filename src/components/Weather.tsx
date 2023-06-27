@@ -1,12 +1,8 @@
 'use client';
-import AcUnitIcon from '@mui/icons-material/AcUnit';
 import AirIcon from '@mui/icons-material/Air';
 import SevereColdIcon from '@mui/icons-material/SevereCold';
 import WbSunnyIcon from '@mui/icons-material/WbSunny';
-import WhatshotIcon from '@mui/icons-material/Whatshot';
-import { Box, Grid, Typography } from '@mui/material';
-
-import { weatherRequests } from '../services/weather';
+import { Box, Typography } from '@mui/material';
 
 type Props = {
   weathersData: Weather[];
@@ -25,15 +21,6 @@ type Weather = {
   temperatureF: number;
   temperatureC: number;
   date: string;
-};
-const weathers = {
-  Balmy: <AcUnitIcon />,
-  Chilly: <AcUnitIcon />,
-  Freezing: <SevereColdIcon />,
-  Hot: <WbSunnyIcon />,
-  Bracing: <AirIcon />,
-  Mild: <AirIcon />,
-  Sweltering: <WhatshotIcon />
 };
 
 export default async function Weather({ weathersData }: Props) {

@@ -15,11 +15,17 @@ export const clientColumns: MRT_ColumnDef<Client>[] = [
   },
   {
     accessorKey: 'tipoDocumento',
-    header: 'Tipo do documento'
+    header: 'Tipo do documento',
+    muiTableBodyCellEditTextFieldProps: {
+      sx: { display: 'none' }
+    }
   },
   {
     accessorKey: 'numeroDocumento',
-    header: 'Documento'
+    header: 'Documento',
+    muiTableBodyCellEditTextFieldProps: {
+      sx: { display: 'none' }
+    }
   },
   {
     accessorKey: 'bairro',
@@ -45,14 +51,6 @@ export const clientColumns: MRT_ColumnDef<Client>[] = [
 ];
 
 export const conductorColumns: MRT_ColumnDef<TConductor>[] = [
-  {
-    accessorKey: 'id',
-    header: 'id',
-    enableEditing: false,
-    muiTableBodyCellEditTextFieldProps: {
-      sx: { display: 'none' }
-    }
-  },
   {
     accessorKey: 'nome',
     header: 'Nome',
