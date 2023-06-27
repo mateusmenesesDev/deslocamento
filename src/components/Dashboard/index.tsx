@@ -1,7 +1,7 @@
 'use client';
 import DashboardCountBox from '@components/DashboardCountBox';
 import LineChart from '@components/LineChart';
-import PieChart from '@components/Table/PieChart';
+import PieChart from '@components/PieChart';
 
 import AirlineSeatReclineExtraIcon from '@mui/icons-material/AirlineSeatReclineExtra';
 import DirectionsCarIcon from '@mui/icons-material/DirectionsCar';

@@ -7,7 +7,6 @@ import { TConductor } from '../schemas/conductorSchema';
 import { TTravel } from '../schemas/travelSchema';
 import { TVehicle } from '../schemas/vehicleSchema';
 import 'dayjs/locale/pt-br';
-import { conductorRequest } from '../services/conductor';
 
 export const clientColumns: MRT_ColumnDef<Client>[] = [
   {
@@ -46,6 +45,14 @@ export const clientColumns: MRT_ColumnDef<Client>[] = [
 ];
 
 export const conductorColumns: MRT_ColumnDef<TConductor>[] = [
+  {
+    accessorKey: 'id',
+    header: 'id',
+    enableEditing: false,
+    muiTableBodyCellEditTextFieldProps: {
+      sx: { display: 'none' }
+    }
+  },
   {
     accessorKey: 'nome',
     header: 'Nome',

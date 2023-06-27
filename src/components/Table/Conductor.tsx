@@ -22,9 +22,10 @@ import { NewConductor } from './Create/NewConductor';
 
 type Props = {
   data: TConductor[];
+  conductorsOnTravel: (string | number)[];
 };
 
-export default function Conductor({ data }: Props) {
+export default function Conductor({ data, conductorsOnTravel }: Props) {
   const columns = conductorColumns;
   const [createModalOpen, setCreateModalOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -79,6 +80,9 @@ export default function Conductor({ data }: Props) {
                 setIsLoading(false);
               }}
             />
+            {/* {!conductorsOnTravel.includes(row.getValue('id')) && (
+              <Button>Iniciar deslocamento</Button>
+            )} */}
           </Box>
         )}
       />

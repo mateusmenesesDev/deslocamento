@@ -5,8 +5,8 @@ import dynamic from 'next/dynamic';
 const ReactApexChart = dynamic(() => import('react-apexcharts'), {
   ssr: false
 });
-import { TConductor } from '../../schemas/conductorSchema';
-import { TTravel } from '../../schemas/travelSchema';
+import { TConductor } from '../schemas/conductorSchema';
+import { TTravel } from '../schemas/travelSchema';
 
 type Props = {
   conductors: TConductor[];

@@ -1,4 +1,6 @@
+import { TConductor } from '../schemas/conductorSchema';
 import { TTravel } from '../schemas/travelSchema';
+import { conductorRequest } from '../services/conductor';
 import { travelRequest } from '../services/travel';
 import { DeleteRowProps, EditRowProps, NewRowProps } from '../typings/Crud';
 import { revalidate } from './revalidatePaths';
@@ -9,7 +11,14 @@ export const createNewRow = async ({
   setDataTable
 }: NewRowProps<TTravel>) => {
   try {
-    await travelRequest.createNew(values);
+    const conductorResponse: Promise<TConductor> = conductorRequest.findById(
+      values.idCondutor as number
+    );
+    const [conductor] = await Promise.all([
+      conductorResponse,
+      travelRequest.createNew(values)
+    ]);
+    values.idCondutor = conductor.nome;
     await revalidate.travel();
     dataTable.unshift(values);
     setDataTable([...dataTable]);
