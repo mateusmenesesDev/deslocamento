@@ -27,7 +27,7 @@
 <li>Gerenciamento de veículos</li>
 </ul><ul>
 <li>Gerenciamento de viagens</li>
-</ul><h5>Instalação_</h5><ul>
+</ul><h5>Instalação</h5><ul>
 <li>npm install</li>
 </ul><ul>
 <li>npm run dev</li>
