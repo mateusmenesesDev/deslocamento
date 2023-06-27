@@ -82,7 +82,7 @@ export const NewConductor = ({
                   dateAdapter={AdapterDayjs}
                   adapterLocale="pt-br"
                 >
-                  <DatePicker {...field} />
+                  <DatePicker {...field} label="Vencimento Habilitação" />
                 </LocalizationProvider>
               )}
             ></Controller>

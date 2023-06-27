@@ -78,7 +78,8 @@ export const conductorColumns: MRT_ColumnDef<TConductor>[] = [
         <DatePicker
           label="Vencimento da Habilitação"
           onChange={(newValue: any) => {
-            if (newValue.length < 0) alert('Informe a data de encerramento!');
+            if (newValue.length < 0)
+              alert('Informe a data de vencimento da habilitação!');
             const date = new Date(newValue);
             const { editingRow } = table.getState();
             const { setEditingRow } = table;

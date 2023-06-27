@@ -25,7 +25,6 @@ export const conductorRequest = {
   },
 
   deleteById: async (id: number) => {
-    console.log('🚀 ~ file: client.ts:24 ~ deleteById: ~ id:', id);
     try {
       const request = await fetch(`${baseUrl}/api/v1/Condutor/${id}`, {
         method: 'DELETE',
