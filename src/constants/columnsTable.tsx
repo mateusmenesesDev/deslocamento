@@ -218,8 +218,7 @@ export const travelColumns: MRT_ColumnDef<TTravel>[] = [
           }}
         />
       </LocalizationProvider>
-    ),
-    enableEditing: (row) => !!row.original.fimDeslocamento
+    )
   },
   {
     accessorKey: 'checkList',
