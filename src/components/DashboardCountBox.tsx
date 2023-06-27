@@ -15,10 +15,14 @@ export default function DashboardCountBox({ count, label, Icon }: Props) {
       textAlign="center"
       display="flex"
       alignItems="center"
+      alignContent="center"
       gap="1.5rem"
       p="1rem"
       borderRadius="25px"
       width="100%"
+      height="100%"
+      minHeight="100%"
+      justifyContent="center"
     >
       <div>{Icon()}</div>
       <div>
