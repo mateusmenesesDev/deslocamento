@@ -1,17 +1,18 @@
 'use client';
-import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography';
-import Grid from '@mui/material/Unstable_Grid2'; // Grid version 2
+import DashboardCountBox from '@components/DashboardCountBox';
+import LineChart from '@components/LineChart';
+import PieChart from '@components/Table/PieChart';
+
+import AirlineSeatReclineExtraIcon from '@mui/icons-material/AirlineSeatReclineExtra';
 import DirectionsCarIcon from '@mui/icons-material/DirectionsCar';
-import MenuIcon from '@mui/icons-material/Menu';
 import ModeOfTravelIcon from '@mui/icons-material/ModeOfTravel';
 import PersonOutlineIcon from '@mui/icons-material/PersonOutline';
+import Grid from '@mui/material/Unstable_Grid2'; // Grid version 2
 
 import { Client } from '../../schemas/clientSchema';
 import { TConductor } from '../../schemas/conductorSchema';
 import { TTravel } from '../../schemas/travelSchema';
 import { TVehicle } from '../../schemas/vehicleSchema';
-import DashboardCountBox from '@components/DashboardCountBox';
 
 type Props = {
   clients: Client[];
@@ -34,35 +35,39 @@ export default function Dashboard({
     if (travel.fimDeslocamento === null) {
       return travel;
     }
-  }).length;
+  });
   return (
-    <Grid
-      container
-      width="100%"
-      justifyContent="space-around"
-      gap="16px"
-      sx={{ minWidth: { xs: '100px', sm: '360px', md: '400px' } }}
-    >
-      <DashboardCountBox
-        count={clientsLength}
-        label="Total de clientes"
-        Icon={() => <PersonOutlineIcon fontSize="large" />}
-      />
-      <DashboardCountBox
-        count={conductorsLength}
-        label="Total de condutores"
-        Icon={() => <PersonOutlineIcon fontSize="large" />}
-      />
-      <DashboardCountBox
-        count={vehiclesLength}
-        label="Total de veículos"
-        Icon={() => <PersonOutlineIcon fontSize="large" />}
-      />
-      <DashboardCountBox
-        count={activeTravels}
-        label="Deslocamentos ativos"
-        Icon={() => <PersonOutlineIcon fontSize="large" />}
-      />
-    </Grid>
+    <>
+      <Grid
+        container
+        width="100%"
+        justifyContent="space-around"
+        gap="16px"
+        sx={{ minWidth: { xs: '100px', sm: '360px', md: '400px' } }}
+      >
+        <DashboardCountBox
+          count={clientsLength}
+          label="Total de clientes"
+          Icon={() => <PersonOutlineIcon fontSize="large" />}
+        />
+        <DashboardCountBox
+          count={conductorsLength}
+          label="Total de condutores"
+          Icon={() => <AirlineSeatReclineExtraIcon fontSize="large" />}
+        />
+        <DashboardCountBox
+          count={vehiclesLength}
+          label="Total de veículos"
+          Icon={() => <DirectionsCarIcon fontSize="large" />}
+        />
+        <DashboardCountBox
+          count={activeTravels.length}
+          label="Deslocamentos ativos"
+          Icon={() => <ModeOfTravelIcon fontSize="large" />}
+        />
+      </Grid>
+      <LineChart />
+      <PieChart conductors={conductors} travels={activeTravels} />
+    </>
   );
 }
