@@ -148,6 +148,18 @@ export const travelColumns: MRT_ColumnDef<TTravel>[] = [
     enableEditing: false,
     muiTableBodyCellEditTextFieldProps: {
       sx: { display: 'none' }
+    },
+    Cell: ({ cell }) => {
+      const value = cell.getValue();
+      if (!value) return null;
+      if (value instanceof Date) {
+        return <div>{value.toLocaleDateString('pt-br')}</div>;
+      }
+      return (
+        <div>
+          {new Date(cell.getValue<string>()).toLocaleDateString('pt-br')}
+        </div>
+      );
     }
   },
   {
