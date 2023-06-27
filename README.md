@@ -6,7 +6,7 @@
 <li>O foco é resolver problemáticas de gerenciamento de múltiplas informações de logística em setores que lidam com entregas ou qualquer outro tipo de deslocamento com veículos.</li>
 </ul><ul>
 <li>Temos o objetivo de resolver o gerenciamento de deslocamentos através da centralização de informações sobre clientes, veículos, condutores e deslocamentos.</li>
-</ul><h2>Technologias Utilizadas</h2>
+</ul><h2>Tecnologias Utilizadas</h2>
 <hr><ul>
 <li>React</li>
 </ul><ul>
