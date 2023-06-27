@@ -83,8 +83,14 @@ export const NewTravel = ({
     getClients();
   }, []);
 
-  const selectColumns = ['idCondutor', 'idCliente', 'idVeiculo'];
-  const dateColumns = ['inicioDeslocamento'];
+  const hiddenColumns = [
+    'idCondutor',
+    'idCliente',
+    'idVeiculo',
+    'fimDeslocamento',
+    'inicioDeslocamento',
+    'kmFinal'
+  ];
   return (
     <Dialog open={open}>
       <DialogTitle textAlign="center">Criar Novo Registro</DialogTitle>
@@ -100,9 +106,7 @@ export const NewTravel = ({
             {columns.map(
               ({ accessorKey, header }) =>
                 accessorKey &&
-                !selectColumns.includes(accessorKey) &&
-                !dateColumns.includes(accessorKey) &&
-                accessorKey !== 'fimDeslocamento' && (
+                !hiddenColumns.includes(accessorKey) && (
                   <TextField
                     key={accessorKey}
                     label={header}
@@ -171,19 +175,6 @@ export const NewTravel = ({
             <Typography color="red">
               {errors.inicioDeslocamento?.message}
             </Typography>
-
-            <Controller
-              name="fimDeslocamento"
-              control={control}
-              render={({ field }) => (
-                <LocalizationProvider
-                  dateAdapter={AdapterDayjs}
-                  adapterLocale="pt-br"
-                >
-                  <DatePicker {...field} label={'Fim do Deslocamento'} />
-                </LocalizationProvider>
-              )}
-            ></Controller>
           </Stack>
           <DialogActions sx={{ p: '1.25rem', justifyContent: 'space-between' }}>
             <Button onClick={onClose}>Cancelar</Button>
