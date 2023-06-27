@@ -35,7 +35,7 @@ export default function Travel({ data }: Props) {
       <Typography variant="h5">
         Total de deslocamentos: {dataTable.length}
       </Typography>
-      <Box>
+      <Box sx={{ marginY: '10px' }}>
         <Button
           color="secondary"
           onClick={() => setCreateModalOpen(true)}
