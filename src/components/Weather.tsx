@@ -38,7 +38,7 @@ const weathers = {
 
 export default async function Weather({ weathersData }: Props) {
   return (
-    <Box marginTop="24px">
+    <Box marginTop="32px">
       <Typography fontSize="28px" textAlign="center" fontWeight="600">
         Previsão do Tempo
       </Typography>

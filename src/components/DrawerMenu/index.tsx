@@ -144,8 +144,8 @@ export default function DrawerMenu({
           flexGrow: 1,
           p: 3,
           overflow: 'auto',
-          backgroundColor: '#F2F2F2'
-          // minHeight: '100vh'
+          backgroundColor: '#F2F2F2',
+          minHeight: '100vh'
         }}
       >
         <DrawerHeader />
