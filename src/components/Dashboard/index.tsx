@@ -27,8 +27,6 @@ export default function Dashboard({
   vehicles,
   travels
 }: Props) {
-  console.log(travels);
-
   const clientsLength = clients.length;
   const conductorsLength = conductors.length;
   const vehiclesLength = vehicles.length;

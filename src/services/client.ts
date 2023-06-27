@@ -24,7 +24,6 @@ export const clientRequests = {
   },
 
   deleteById: async (id: number) => {
-    console.log('🚀 ~ file: client.ts:24 ~ deleteById: ~ id:', id);
     try {
       const request = await fetch(`${baseUrl}/api/v1/Cliente/${id}`, {
         method: 'DELETE',
@@ -32,7 +31,6 @@ export const clientRequests = {
         body: JSON.stringify({ id })
       });
       if (request.status === 400) {
-        console.log('entrei aqui');
         throw new Error('Algo deu errado no servidor!');
       }
       return request;

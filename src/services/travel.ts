@@ -32,7 +32,6 @@ export const travelRequest = {
         body: JSON.stringify({ id })
       });
       if (request.status === 400) {
-        console.log('entrei aqui');
         throw new Error('Algo deu errado no servidor!');
       }
       return request;
