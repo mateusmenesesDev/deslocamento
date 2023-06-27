@@ -1,4 +1,5 @@
 import Dashboard from '@components/Dashboard';
+import Weather from '@components/Weather';
 
 import { Client } from '../schemas/clientSchema';
 import { TConductor } from '../schemas/conductorSchema';
@@ -8,7 +9,6 @@ import { clientRequests } from '../services/client';
 import { conductorRequest } from '../services/conductor';
 import { travelRequest } from '../services/travel';
 import { vehicleRequest } from '../services/vehicle';
-import Weather from '@components/Weather';
 import { weatherRequests } from '../services/weather';
 
 export const revalidate = 5;

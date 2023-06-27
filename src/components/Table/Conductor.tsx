@@ -25,7 +25,7 @@ type Props = {
   conductorsOnTravel: (string | number)[];
 };
 
-export default function Conductor({ data, conductorsOnTravel }: Props) {
+export default function Conductor({ data }: Props) {
   const columns = conductorColumns;
   const [createModalOpen, setCreateModalOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
