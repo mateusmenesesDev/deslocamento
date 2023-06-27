@@ -45,8 +45,6 @@ export default function Dashboard({
         columns={{ xs: 1, sm: 2, md: 6, lg: 12 }}
         alignContent="baseline"
         alignItems="stretch"
-        // justifyContent="space-around"
-        // gap="16px"
         sx={{ minWidth: '100%' }}
       >
         <Grid xs={2} sm={1} md={1.5} lg={3}>

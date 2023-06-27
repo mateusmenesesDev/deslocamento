@@ -11,6 +11,7 @@ export const createNewRow = async ({
   try {
     await clientRequests.createNew(values);
     await revalidate.clients();
+    await revalidate.dashboard();
     dataTable.unshift(values);
     setDataTable([...dataTable]);
   } catch (err) {
@@ -26,6 +27,7 @@ export const handleDeleteRow = async ({
   try {
     await clientRequests.deleteById(Number(row.original.id));
     await revalidate.clients();
+    await revalidate.dashboard();
     const newDataTable = dataTable.filter(({ id }) => id !== row.original.id);
     setDataTable(newDataTable);
   } catch (err) {
@@ -42,6 +44,7 @@ export const handleSaveRowEdit = async ({
     await clientRequests.updateById({ ...MUI.values, id: MUI.row.original.id });
     dataTable[MUI.row.index] = MUI.values;
     await revalidate.clients();
+    await revalidate.dashboard();
     setDataTable([...dataTable]);
     MUI.exitEditingMode();
   }

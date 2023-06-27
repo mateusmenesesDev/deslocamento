@@ -34,6 +34,7 @@ export const createNewRow = async ({
     values.idCliente = client.nome;
     values.idVeiculo = vehicle.placa;
     await revalidate.travel();
+    await revalidate.dashboard();
     dataTable.unshift(values);
     setDataTable([...dataTable]);
   } catch (err) {
@@ -49,6 +50,7 @@ export const handleDeleteRow = async ({
   try {
     await travelRequest.deleteById(Number(row.original.id));
     await revalidate.travel();
+    await revalidate.dashboard();
     const newDataTable = dataTable.filter(({ id }) => id !== row.original.id);
     setDataTable(newDataTable);
   } catch (err) {
@@ -68,6 +70,7 @@ export const handleSaveRowEdit = async ({
     });
     dataTable[MUI.row.index] = MUI.values;
     revalidate.travel();
+    revalidate.dashboard();
     setDataTable([...dataTable]);
     MUI.exitEditingMode();
   }

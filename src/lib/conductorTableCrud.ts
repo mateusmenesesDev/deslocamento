@@ -11,6 +11,7 @@ export const createNewRow = async ({
   try {
     await conductorRequest.createNew(values);
     await revalidate.conductor();
+    await revalidate.dashboard();
     dataTable.unshift(values);
     setDataTable([...dataTable]);
   } catch (err) {
@@ -26,6 +27,7 @@ export const handleDeleteRow = async ({
   try {
     await conductorRequest.deleteById(Number(row.original.id));
     await revalidate.conductor();
+    await revalidate.dashboard();
     const newDataTable = dataTable.filter(({ id }) => id !== row.original.id);
     setDataTable(newDataTable);
   } catch (err) {
@@ -45,6 +47,7 @@ export const handleSaveRowEdit = async ({
     });
     dataTable[MUI.row.index] = MUI.values;
     revalidate.conductor();
+    revalidate.dashboard();
     setDataTable([...dataTable]);
     MUI.exitEditingMode();
   }
