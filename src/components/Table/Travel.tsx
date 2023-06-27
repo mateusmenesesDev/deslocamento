@@ -3,7 +3,7 @@
 import { useState } from 'react';
 
 import DeleteButton from '@components/DeleteButton';
-import EditButton from '@components/EditButton';
+import FinishButton from '@components/FinishButton';
 
 import {
   createNewRow,
@@ -19,7 +19,6 @@ import { travelColumns } from '../../constants/columnsTable';
 import { TTravel } from '../../schemas/travelSchema';
 import { tableConfig } from './config';
 import { NewTravel } from './Create/NewTravel';
-import FinishButton from '@components/FinishButton';
 
 type Props = {
   data: TTravel[];

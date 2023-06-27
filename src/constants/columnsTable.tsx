@@ -1,11 +1,11 @@
+import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { MRT_ColumnDef } from 'material-react-table';
 
 import { Client } from '../schemas/clientSchema';
 import { TConductor } from '../schemas/conductorSchema';
 import { TTravel } from '../schemas/travelSchema';
 import { TVehicle } from '../schemas/vehicleSchema';
-import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import 'dayjs/locale/pt-br';
 
 export const clientColumns: MRT_ColumnDef<Client>[] = [
