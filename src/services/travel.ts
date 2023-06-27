@@ -17,7 +17,7 @@ export const travelRequest = {
   },
 
   updateById: async (payload: TTravel) => {
-    await fetch(`${baseUrl}/${payload.id}`, {
+    await fetch(`${baseUrl}/${payload.id}/EncerrarDeslocamento`, {
       method: 'PUT',
       body: JSON.stringify(payload),
       headers: new Headers({ 'content-type': 'application/json' })

@@ -84,7 +84,7 @@ export const NewTravel = ({
   }, []);
 
   const selectColumns = ['idCondutor', 'idCliente', 'idVeiculo'];
-  const dateColumns = ['inicioDeslocamento', 'fimDeslocamento'];
+  const dateColumns = ['inicioDeslocamento'];
   return (
     <Dialog open={open}>
       <DialogTitle textAlign="center">Criar Novo Registro</DialogTitle>
@@ -101,7 +101,8 @@ export const NewTravel = ({
               ({ accessorKey, header }) =>
                 accessorKey &&
                 !selectColumns.includes(accessorKey) &&
-                !dateColumns.includes(accessorKey) && (
+                !dateColumns.includes(accessorKey) &&
+                accessorKey !== 'fimDeslocamento' && (
                   <TextField
                     key={accessorKey}
                     label={header}

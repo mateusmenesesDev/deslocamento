@@ -2,8 +2,10 @@ import { MRT_ColumnDef } from 'material-react-table';
 
 import { Client } from '../schemas/clientSchema';
 import { TConductor } from '../schemas/conductorSchema';
-import { TVehicle } from '../schemas/vehicleSchema';
 import { TTravel } from '../schemas/travelSchema';
+import { TVehicle } from '../schemas/vehicleSchema';
+import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 
 export const clientColumns: MRT_ColumnDef<Client>[] = [
   {
@@ -106,20 +108,35 @@ export const vehiclesColumns: MRT_ColumnDef<TVehicle>[] = [
 export const travelColumns: MRT_ColumnDef<TTravel>[] = [
   {
     accessorKey: 'idCondutor',
-    header: 'Condutor'
+    header: 'Condutor',
+    enableEditing: false,
+    muiTableBodyCellEditTextFieldProps: {
+      sx: { display: 'none' }
+    }
   },
   {
     accessorKey: 'idCliente',
-    header: 'Cliente'
+    header: 'Cliente',
+    enableEditing: false,
+    muiTableBodyCellEditTextFieldProps: {
+      sx: { display: 'none' }
+    }
   },
   {
     accessorKey: 'idVeiculo',
-    header: 'Veículo'
+    header: 'Veículo',
+    enableEditing: false,
+    muiTableBodyCellEditTextFieldProps: {
+      sx: { display: 'none' }
+    }
   },
   {
     accessorKey: 'kmInicial',
     header: 'KM Inicial',
-    enableEditing: false
+    enableEditing: false,
+    muiTableBodyCellEditTextFieldProps: {
+      sx: { display: 'none' }
+    }
   },
   {
     accessorKey: 'kmFinal',
@@ -128,16 +145,9 @@ export const travelColumns: MRT_ColumnDef<TTravel>[] = [
   {
     accessorKey: 'inicioDeslocamento',
     header: 'Início do Deslocamento',
-    Cell: ({ cell }) => {
-      const value = cell.getValue();
-      if (value instanceof Date) {
-        return <div>{value.toLocaleDateString('pt-br')}</div>;
-      }
-      return (
-        <div>
-          {new Date(cell.getValue<string>()).toLocaleDateString('pt-br')}
-        </div>
-      );
+    enableEditing: false,
+    muiTableBodyCellEditTextFieldProps: {
+      sx: { display: 'none' }
     }
   },
   {
@@ -154,18 +164,52 @@ export const travelColumns: MRT_ColumnDef<TTravel>[] = [
           {new Date(cell.getValue<string>()).toLocaleDateString('pt-br')}
         </div>
       );
-    }
+    },
+    Edit: ({ column, table }) => (
+      <LocalizationProvider dateAdapter={AdapterDayjs}>
+        <DatePicker
+          label="Fim de Deslocamento"
+          onChange={(newValue: any) => {
+            if (newValue.length < 0) alert('Informe a data de encerramento!');
+            const date = new Date(newValue);
+            const { editingRow } = table.getState();
+            const { setEditingRow } = table;
+            const saveRow = (newValue: Date) => {
+              if (editingRow) {
+                setEditingRow({
+                  ...editingRow,
+                  _valuesCache: {
+                    ...editingRow._valuesCache,
+                    [column.id]: newValue
+                  }
+                });
+              }
+            };
+            saveRow(date);
+          }}
+        />
+      </LocalizationProvider>
+    ),
+    enableEditing: (row) => !!row.original.fimDeslocamento
   },
   {
     accessorKey: 'checkList',
-    header: 'CheckList'
+    header: 'CheckList',
+    enableEditing: false,
+    muiTableBodyCellEditTextFieldProps: {
+      sx: { display: 'none' }
+    }
   },
   {
     accessorKey: 'motivo',
-    header: 'Motivo'
+    header: 'Motivo',
+    enableEditing: false,
+    muiTableBodyCellEditTextFieldProps: {
+      sx: { display: 'none' }
+    }
   },
   {
     accessorKey: 'observacao',
-    header: 'Observacao'
+    header: 'Observação'
   }
 ];

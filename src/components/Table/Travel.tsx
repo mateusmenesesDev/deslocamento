@@ -19,6 +19,7 @@ import { travelColumns } from '../../constants/columnsTable';
 import { TTravel } from '../../schemas/travelSchema';
 import { tableConfig } from './config';
 import { NewTravel } from './Create/NewTravel';
+import FinishButton from '@components/FinishButton';
 
 type Props = {
   data: TTravel[];
@@ -56,7 +57,7 @@ export default function Travel({ data }: Props) {
         }}
         renderRowActions={({ row, table }) => (
           <Box sx={{ display: 'flex', gap: '1rem' }}>
-            <EditButton handleClick={() => table.setEditingRow(row)} />
+            <FinishButton handleClick={() => table.setEditingRow(row)} />
             <DeleteButton
               handleDelete={async () => {
                 setIsLoading(true);
