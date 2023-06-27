@@ -7,7 +7,7 @@ import AirlineSeatReclineExtraIcon from '@mui/icons-material/AirlineSeatReclineE
 import DirectionsCarIcon from '@mui/icons-material/DirectionsCar';
 import ModeOfTravelIcon from '@mui/icons-material/ModeOfTravel';
 import PersonOutlineIcon from '@mui/icons-material/PersonOutline';
-import { Container } from '@mui/material';
+import { Container, Stack } from '@mui/material';
 import Grid from '@mui/material/Unstable_Grid2'; // Grid version 2
 
 import { Client } from '../../schemas/clientSchema';
@@ -80,8 +80,22 @@ export default function Dashboard({
           />
         </Grid>
       </Grid>
-      <LineChart travels={travels} />
-      <PieChart conductors={conductors} travels={activeTravels} />
+      <Grid
+        justifyItems="center"
+        alignItems="center"
+        container
+        marginTop={6}
+        spacing={{ xs: 6, lg: 12 }}
+        columns={{ xs: 1, md: 8, lg: 12 }}
+      >
+        <Grid lg={6} md={4} xs={1}>
+          <LineChart travels={travels} />
+        </Grid>
+
+        <Grid lg={6} md={4} xs={1}>
+          <PieChart conductors={conductors} travels={activeTravels} />
+        </Grid>
+      </Grid>
     </Container>
   );
 }

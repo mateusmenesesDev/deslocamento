@@ -140,8 +140,13 @@ export default function DrawerMenu({
         </List>
       </Drawer>
       <Box
-        component="main"
-        sx={{ flexGrow: 1, p: 3, overflow: 'auto', backgroundColor: '#F2F2F2' }}
+        sx={{
+          flexGrow: 1,
+          p: 3,
+          overflow: 'auto',
+          backgroundColor: '#F2F2F2',
+          minHeight: '100vh'
+        }}
       >
         <DrawerHeader />
         <main>{children}</main>

@@ -34,13 +34,11 @@ export default function PieChart({ conductors, travels }: Props) {
     }
   };
   return (
-    <Box maxWidth="500px">
-      <ReactApexChart
-        options={state.options}
-        series={state.series}
-        type="pie"
-        width="100%"
-      />
-    </Box>
+    <ReactApexChart
+      options={state.options}
+      series={state.series}
+      type="pie"
+      width="100%"
+    />
   );
 }

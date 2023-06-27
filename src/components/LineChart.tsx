@@ -111,13 +111,11 @@ export default function LineChart({ travels }: Props) {
     ]
   };
   return (
-    <Box className="app">
-      <Chart
-        options={state.options}
-        series={state.series}
-        type="line"
-        width="800"
-      />
-    </Box>
+    <Chart
+      options={state.options}
+      series={state.series}
+      type="line"
+      width="100%"
+    />
   );
 }
