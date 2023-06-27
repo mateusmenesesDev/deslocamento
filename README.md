@@ -39,7 +39,7 @@
 <li>Criar novas viagens, informando a data de saída e depois podendo encerrar a viagem informando a data de finalização.</li>
 <li>Ter uma lista de condutores livres para iniciar nova viagens.</li>
 </ol><h2>Projeto Status</h2>
-<hr><p>Completed</p><h2>Features that can be added</h2>
+<hr><p>Completo</p><h2>Funcionalidades que podem ser adicionadas</h2>
 <hr><ul>
 <li>Adicionar botão para iniciar novo deslocamento a partir da tabela de condutores, selecionando o condutor disponível.</li>
 </ul><ul>
