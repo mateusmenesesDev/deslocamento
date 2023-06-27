@@ -1,7 +1,10 @@
-import ReactApexChart from 'react-apexcharts';
+'use client';
+// import ReactApexChart from 'react-apexcharts';
+import dynamic from 'next/dynamic';
 
-import Box from '@mui/material/Box';
-
+const ReactApexChart = dynamic(() => import('react-apexcharts'), {
+  ssr: false
+});
 import { TConductor } from '../../schemas/conductorSchema';
 import { TTravel } from '../../schemas/travelSchema';
 

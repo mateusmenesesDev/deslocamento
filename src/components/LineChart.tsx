@@ -1,7 +1,9 @@
-import Chart from 'react-apexcharts';
+'use client';
+import dynamic from 'next/dynamic';
 
-import Box from '@mui/material/Box';
-
+const Chart = dynamic(() => import('react-apexcharts'), {
+  ssr: false
+});
 import { TTravel } from '../schemas/travelSchema';
 
 type Props = {

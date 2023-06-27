@@ -7,7 +7,7 @@ import AirlineSeatReclineExtraIcon from '@mui/icons-material/AirlineSeatReclineE
 import DirectionsCarIcon from '@mui/icons-material/DirectionsCar';
 import ModeOfTravelIcon from '@mui/icons-material/ModeOfTravel';
 import PersonOutlineIcon from '@mui/icons-material/PersonOutline';
-import { Container, Stack, Typography } from '@mui/material';
+import { Container, Typography } from '@mui/material';
 import Grid from '@mui/material/Unstable_Grid2'; // Grid version 2
 
 import { Client } from '../../schemas/clientSchema';
@@ -95,7 +95,7 @@ export default function Dashboard({
           <Typography variant="h6" textAlign="center" marginBottom={4}>
             Deslocamentos Mensais
           </Typography>
-          <LineChart travels={travels} />
+          {/* <LineChart travels={travels} /> */}
         </Grid>
 
         <Grid lg={5} md={5} xs={1} bgcolor="white" p={4}>
