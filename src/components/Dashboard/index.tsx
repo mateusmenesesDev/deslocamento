@@ -95,7 +95,7 @@ export default function Dashboard({
           <Typography variant="h6" textAlign="center" marginBottom={4}>
             Deslocamentos Mensais
           </Typography>
-          {/* <LineChart travels={travels} /> */}
+          <LineChart travels={travels} />
         </Grid>
 
         <Grid lg={5} md={5} xs={1} bgcolor="white" p={4}>
