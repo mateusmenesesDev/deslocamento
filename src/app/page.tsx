@@ -15,15 +15,12 @@ export default async function Home() {
   const conductors: TConductor[] = await conductorRequest.findAll();
   const vehicles: TVehicle[] = await vehicleRequest.findAll();
   const travels: TTravel[] = await travelRequest.findAll();
-  console.log('🚀 ~ file: page.tsx:18 ~ Home ~ travels:', travels);
   return (
-    <main>
-      <Dashboard
-        clients={clients}
-        conductors={conductors}
-        vehicles={vehicles}
-        travels={travels}
-      />
-    </main>
+    <Dashboard
+      clients={clients}
+      conductors={conductors}
+      vehicles={vehicles}
+      travels={travels}
+    />
   );
 }

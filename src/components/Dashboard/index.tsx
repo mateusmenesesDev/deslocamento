@@ -7,6 +7,7 @@ import AirlineSeatReclineExtraIcon from '@mui/icons-material/AirlineSeatReclineE
 import DirectionsCarIcon from '@mui/icons-material/DirectionsCar';
 import ModeOfTravelIcon from '@mui/icons-material/ModeOfTravel';
 import PersonOutlineIcon from '@mui/icons-material/PersonOutline';
+import { Container } from '@mui/material';
 import Grid from '@mui/material/Unstable_Grid2'; // Grid version 2
 
 import { Client } from '../../schemas/clientSchema';
@@ -37,37 +38,46 @@ export default function Dashboard({
     }
   });
   return (
-    <>
+    <Container maxWidth="xl" sx={{ marginTop: '16px' }}>
       <Grid
         container
         width="100%"
-        justifyContent="space-around"
-        gap="16px"
-        sx={{ minWidth: { xs: '100px', sm: '360px', md: '400px' } }}
+        // justifyContent="space-around"
+        // gap="16px"
+        spacing={4}
+        sx={{ minWidth: '100%' }}
       >
-        <DashboardCountBox
-          count={clientsLength}
-          label="Total de clientes"
-          Icon={() => <PersonOutlineIcon fontSize="large" />}
-        />
-        <DashboardCountBox
-          count={conductorsLength}
-          label="Total de condutores"
-          Icon={() => <AirlineSeatReclineExtraIcon fontSize="large" />}
-        />
-        <DashboardCountBox
-          count={vehiclesLength}
-          label="Total de veículos"
-          Icon={() => <DirectionsCarIcon fontSize="large" />}
-        />
-        <DashboardCountBox
-          count={activeTravels.length}
-          label="Deslocamentos ativos"
-          Icon={() => <ModeOfTravelIcon fontSize="large" />}
-        />
+        <Grid xs={2.5}>
+          <DashboardCountBox
+            count={clientsLength}
+            label="Total de clientes"
+            Icon={() => <PersonOutlineIcon fontSize="large" />}
+          />
+        </Grid>
+        <Grid xs={2.5}>
+          <DashboardCountBox
+            count={conductorsLength}
+            label="Total de condutores"
+            Icon={() => <AirlineSeatReclineExtraIcon fontSize="large" />}
+          />
+        </Grid>
+        <Grid xs={2.5}>
+          <DashboardCountBox
+            count={vehiclesLength}
+            label="Total de veículos"
+            Icon={() => <DirectionsCarIcon fontSize="large" />}
+          />
+        </Grid>
+        <Grid xs={2.5}>
+          <DashboardCountBox
+            count={activeTravels.length}
+            label="Deslocamentos ativos"
+            Icon={() => <ModeOfTravelIcon fontSize="large" />}
+          />
+        </Grid>
       </Grid>
-      <LineChart />
+      <LineChart travels={travels} />
       <PieChart conductors={conductors} travels={activeTravels} />
-    </>
+    </Container>
   );
 }

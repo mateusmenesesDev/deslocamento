@@ -11,13 +11,14 @@ type Props = {
 export default function DashboardCountBox({ count, label, Icon }: Props) {
   return (
     <Box
-      bgcolor="seagreen"
+      bgcolor="white"
       textAlign="center"
       display="flex"
       alignItems="center"
       gap="1.5rem"
       p="1rem"
       borderRadius="25px"
+      width="100%"
     >
       <div>{Icon()}</div>
       <div>
