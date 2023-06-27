@@ -61,6 +61,9 @@ export default async function Weather({ weathersData }: Props) {
               height: '200px'
             }}
           >
+            {temperatureC < 20 && <SevereColdIcon />}
+            {temperatureC >= 20 && temperatureC <= 35 && <AirIcon />}
+            {temperatureC > 35 && <WbSunnyIcon />}
             <Typography fontWeight="500" fontSize="18px">
               {new Date(date).toLocaleDateString('pt-br')}
             </Typography>
